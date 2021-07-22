@@ -6,9 +6,13 @@ const express = require("express");
 
 const { NotFoundError } = require("./expressError");
 
+const teamRoutes = require("./routes/team");
+
 const app = express();
 
 app.use(express.json());
+
+app.use("/team", teamRoutes);
 
 //Handle 404 errors
 app.use(function (req, res, next) {
