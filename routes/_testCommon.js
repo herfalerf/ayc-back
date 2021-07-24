@@ -6,7 +6,12 @@ async function commonBeforeAll() {
 
   await Member.addMember({
     name: "Team Member",
-    bio: "team member bio",
+    bio: "Team member bio",
+    img: "https://via.placeholder.com/150",
+  });
+  await Member.addMember({
+    name: "Team Member 2",
+    bio: "Team member bio 2",
     img: "https://via.placeholder.com/150",
   });
 }

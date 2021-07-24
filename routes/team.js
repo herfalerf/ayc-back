@@ -6,6 +6,7 @@ const express = require("express");
 const { BadRequestError } = require("../expressError");
 const Member = require("../models/member");
 const { createToken } = require("../helpers/tokens");
+const { toTitle } = require("../helpers/toTitle");
 
 const router = express.Router();
 
@@ -21,6 +22,37 @@ router.post("/", async function (req, res, next) {
   try {
     const member = await Member.addMember(req.body);
     return res.status(201).json({ member });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// GET
+//
+// Get list of team members {team: [ { id, name, bio, img }, ...] }
+//
+// Authorization required: None
+
+router.get("/", async function (req, res, next) {
+  try {
+    const team = await Member.findAll();
+    return res.json({ team });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// GET /[name]
+//
+// Get member by name: { id, name, bio, img }
+//
+//Authorization required: None
+
+router.get("/:name", async function (req, res, next) {
+  try {
+    const titleCaseName = toTitle(req.params.name);
+    const member = await Member.get(titleCaseName);
+    return res.json({ member });
   } catch (err) {
     return next(err);
   }

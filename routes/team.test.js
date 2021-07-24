@@ -38,3 +38,43 @@ describe("POST /team", function () {
     });
   });
 });
+
+// GET /team
+
+describe("GET /team", function () {
+  test("works", async function () {
+    const resp = await request(app).get("/team");
+    expect(resp.body).toEqual({
+      team: [
+        {
+          id: expect.any(Number),
+          name: "Team Member",
+          bio: "Team member bio",
+          img: "https://via.placeholder.com/150",
+        },
+        {
+          id: expect.any(Number),
+          name: "Team Member 2",
+          bio: "Team member bio 2",
+          img: "https://via.placeholder.com/150",
+        },
+      ],
+    });
+  });
+});
+
+// GET /team/:name
+
+describe("GET /companies/:name", function () {
+  test("works", async function () {
+    const resp = await request(app).get(`/team/team-member`);
+    expect(resp.body).toEqual({
+      member: {
+        id: expect.any(Number),
+        name: "Team Member",
+        bio: "Team member bio",
+        img: "https://via.placeholder.com/150",
+      },
+    });
+  });
+});
