@@ -1,4 +1,6 @@
+const bcrypt = require("bcrypt");
 const db = require("../db.js");
+const { BCRYPT_WORK_FACTOR } = require("../config");
 
 const testMemberIds = [];
 
@@ -12,6 +14,17 @@ async function commonBeforeAll() {
     `);
 
   testMemberIds.splice(0, 0, ...resultsTeam.rows.map((r) => r.id));
+
+  await db.query(
+    `INSERT INTO admins(username, password)
+          VALUES ('a1', $1),
+                 ('a2', $2)
+          RETURNING username`,
+    [
+      await bcrypt.hash("password1", BCRYPT_WORK_FACTOR),
+      await bcrypt.hash("password2", BCRYPT_WORK_FACTOR),
+    ]
+  );
 }
 
 async function commonBeforeEach() {
