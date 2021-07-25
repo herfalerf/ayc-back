@@ -1,0 +1,51 @@
+{
+    "$id": "http://example.com/example.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "default": {},
+    "description": "The root schema comprises the entire JSON document.",
+    "examples": [
+        {
+            "name": "John Smith",
+            "bio": "This is the bio",
+            "img": "https://via.placeholder.com/150"
+        }
+    ],
+    "required": [
+        "name"
+    ],
+    "title": "The root schema",
+    "type": "object",
+    "properties": {
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The name schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "John Smith"
+            ]
+        },
+        "bio": {
+            "$id": "#/properties/bio",
+            "type": "string",
+            "title": "The bio schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "This is the bio"
+            ]
+        },
+        "img": {
+            "$id": "#/properties/img",
+            "type": "string",
+            "title": "The img schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "https://via.placeholder.com/150"
+            ]
+        }
+    },
+    "additionalProperties": false
+}

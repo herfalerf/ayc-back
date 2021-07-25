@@ -65,7 +65,7 @@ describe("GET /team", function () {
 
 // GET /team/:name
 
-describe("GET /companies/:name", function () {
+describe("GET /team/:name", function () {
   test("works", async function () {
     const resp = await request(app).get(`/team/team-member`);
     expect(resp.body).toEqual({
@@ -76,5 +76,49 @@ describe("GET /companies/:name", function () {
         img: "https://via.placeholder.com/150",
       },
     });
+  });
+
+  test("not found for no such member", async function () {
+    const resp = await request(app).get(`/team/nope`);
+    expect(resp.statusCode).toEqual(404);
+  });
+});
+
+// PATCH /team/:name
+
+describe("PATCH /team/:name", function () {
+  test("works", async function () {
+    const resp = await request(app).patch("/team/team-member").send({
+      name: "New Name",
+    });
+    expect(resp.body).toEqual({
+      member: {
+        id: expect.any(Number),
+        name: "New Name",
+        bio: "Team member bio",
+        img: "https://via.placeholder.com/150",
+      },
+    });
+  });
+
+  test("not found on no such member", async function () {
+    const resp = await request(app).patch("/team/nope").send({
+      name: "New Nope",
+    });
+    expect(resp.statusCode).toEqual(404);
+  });
+});
+
+// DELETE /team/:name
+
+describe("DELETE /team/:name", function () {
+  test("works", async function () {
+    const resp = await request(app).delete(`/team/team-member`);
+    expect(resp.body).toEqual({ deleted: "Team Member" });
+  });
+
+  test("not found for no such member", async function () {
+    const resp = await request(app).delete(`/team/nope`);
+    expect(resp.statusCode).toEqual(404);
   });
 });

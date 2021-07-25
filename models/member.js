@@ -114,7 +114,6 @@ class Member {
       [name]
     );
     const member = result.rows[0];
-    console.log(member);
 
     if (!member) throw new NotFoundError(`No team member: ${name}`);
   }
