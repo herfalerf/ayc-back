@@ -23,6 +23,16 @@ function authenticateJWT(req, res, next) {
   }
 }
 
+function ensureAdmin(req, res, next) {
+  try {
+    if (!res.locals.user) throw new UnauthorizedError();
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+}
+
 module.exports = {
   authenticateJWT,
+  ensureAdmin,
 };

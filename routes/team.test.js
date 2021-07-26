@@ -10,6 +10,8 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
+  a1Token,
+  a2Token,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -21,11 +23,14 @@ afterAll(commonAfterAll);
 
 describe("POST /team", function () {
   test("works", async function () {
-    const resp = await request(app).post("/team").send({
-      name: "New Name",
-      bio: "New Bio",
-      img: "testimg.jpg",
-    });
+    const resp = await request(app)
+      .post("/team")
+      .send({
+        name: "New Name",
+        bio: "New Bio",
+        img: "testimg.jpg",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
 
     expect(resp.statusCode).toEqual(201);
     expect(resp.body).toEqual({
@@ -88,9 +93,12 @@ describe("GET /team/:name", function () {
 
 describe("PATCH /team/:name", function () {
   test("works", async function () {
-    const resp = await request(app).patch("/team/team-member").send({
-      name: "New Name",
-    });
+    const resp = await request(app)
+      .patch("/team/team-member")
+      .send({
+        name: "New Name",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
     expect(resp.body).toEqual({
       member: {
         id: expect.any(Number),
@@ -102,9 +110,12 @@ describe("PATCH /team/:name", function () {
   });
 
   test("not found on no such member", async function () {
-    const resp = await request(app).patch("/team/nope").send({
-      name: "New Nope",
-    });
+    const resp = await request(app)
+      .patch("/team/nope")
+      .send({
+        name: "New Nope",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
     expect(resp.statusCode).toEqual(404);
   });
 });
@@ -113,12 +124,16 @@ describe("PATCH /team/:name", function () {
 
 describe("DELETE /team/:name", function () {
   test("works", async function () {
-    const resp = await request(app).delete(`/team/team-member`);
+    const resp = await request(app)
+      .delete(`/team/team-member`)
+      .set("authorization", `Bearer ${a1Token}`);
     expect(resp.body).toEqual({ deleted: "Team Member" });
   });
 
   test("not found for no such member", async function () {
-    const resp = await request(app).delete(`/team/nope`);
+    const resp = await request(app)
+      .delete(`/team/nope`)
+      .set("authorization", `Bearer ${a1Token}`);
     expect(resp.statusCode).toEqual(404);
   });
 });

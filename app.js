@@ -3,16 +3,22 @@
 // Express app for AYC
 
 const express = require("express");
+const cors = require("cors");
 
 const { NotFoundError } = require("./expressError");
 
+const { authenticateJWT } = require("./middleware/auth");
 const teamRoutes = require("./routes/team");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
+app.use(authenticateJWT);
 
 app.use("/team", teamRoutes);
+app.use("/auth", authRoutes);
 
 //Handle 404 errors
 app.use(function (req, res, next) {

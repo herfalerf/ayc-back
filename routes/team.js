@@ -7,6 +7,7 @@ const express = require("express");
 const { BadRequestError } = require("../expressError");
 const Member = require("../models/member");
 const { toTitle } = require("../helpers/toTitle");
+const { ensureAdmin } = require("../middleware/auth");
 
 const memberNewSchema = require("../schemas/memberNew.json");
 const memberUpdateSchema = require("../schemas/memberUpdate.json");
@@ -21,7 +22,7 @@ const router = express.Router();
 //
 // Authorization required: Admin
 
-router.post("/", async function (req, res, next) {
+router.post("/", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonSchema.validate(req.body, memberNewSchema);
     if (!validator.valid) {
@@ -74,7 +75,7 @@ router.get("/:name", async function (req, res, next) {
 // Returns { id, name, bio, img }
 // Authorization required: Admin
 
-router.patch("/:name", async function (req, res, next) {
+router.patch("/:name", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonSchema.validate(req.body, memberUpdateSchema);
     if (!validator.valid) {
@@ -95,7 +96,7 @@ router.patch("/:name", async function (req, res, next) {
 //
 // Authorization: Admin
 
-router.delete("/:name", async function (req, res, next) {
+router.delete("/:name", ensureAdmin, async function (req, res, next) {
   try {
     const formattedName = toTitle(req.params.name);
     await Member.remove(formattedName);
