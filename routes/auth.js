@@ -8,7 +8,7 @@ const Admin = require("../models/admin");
 const express = require("express");
 
 const { createToken } = require("../helpers/tokens");
-// const adminAuthSchema = require("../schemas/userAuth.json");
+const adminAuthSchema = require("../schemas/adminAuth.json");
 const { BadRequestError } = require("../expressError");
 
 const router = express.Router();
@@ -21,11 +21,11 @@ const router = express.Router();
 
 router.post("/token", async function (req, res, next) {
   try {
-    // const validator = jsonschema.validate(req.body, userAuthSchema);
-    // if (!validator.valid) {
-    //   const errs = validator.errors.map(e => e.stack);
-    //   throw new BadRequestError(errs);
-    // }
+    const validator = jsonschema.validate(req.body, adminAuthSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map((e) => e.stack);
+      throw new BadRequestError(errs);
+    }
 
     const { username, password } = req.body;
     const admin = await Admin.authenticate(username, password);

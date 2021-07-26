@@ -1,10 +1,6 @@
 "use strict";
 
-const {
-  NotFoundError,
-  BadRequestError,
-  UnauthorizedError,
-} = require("../expressError");
+const { NotFoundError, BadRequestError } = require("../expressError");
 const db = require("../db.js");
 const Member = require("./member.js");
 const {
@@ -12,11 +8,8 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testJobIds,
 } = require("./_testCommon");
-const { ExpectationFailed } = require("http-errors");
 const { fail } = require("assert");
-const { compareSync } = require("bcrypt");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
