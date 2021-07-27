@@ -2,7 +2,6 @@
 
 const db = require("../db");
 const { NotFoundError, BadRequestError } = require("../expressError");
-const { ensureAdmin } = require("../middleware/auth");
 const { sqlForPartialUpdate } = require("../helpers/sql");
 
 // Related functions for team members.
@@ -117,6 +116,8 @@ class Member {
     const member = result.rows[0];
 
     if (!member) throw new NotFoundError(`No team member: ${name}`);
+
+    return member;
   }
 }
 
