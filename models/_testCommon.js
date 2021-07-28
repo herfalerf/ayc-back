@@ -3,12 +3,14 @@ const db = require("../db.js");
 const { BCRYPT_WORK_FACTOR } = require("../config");
 
 const testTagIds = [];
+const testVideoIds = [];
 
 async function commonBeforeAll() {
   await db.query("DELETE FROM team");
   await db.query("DELETE FROM customers");
   await db.query("DELETE FROM tags");
   await db.query("DELETE FROM admins");
+  await db.query("DELETE FROM videos");
 
   const resultsCustomers = await db.query(`
   INSERT INTO customers(name, email, phone, company)
@@ -39,6 +41,15 @@ async function commonBeforeAll() {
   RETURNING id`);
 
   testTagIds.splice(0, 0, ...resultsTags.rows.map((r) => r.id));
+
+  const resultsVideos = await db.query(`
+  INSERT INTO videos(name, description, link)
+   VALUES( 'v1', 'v1 describe', 'v1link.com'),
+         ( 'v2', 'v2 describe', 'v2link.com'),
+         ( 'v3', 'v3 describe', 'v3link.com')
+   RETURNING id`);
+
+  testVideoIds.splice(0, 0, ...resultsVideos.rows.map((r) => r.id));
 }
 
 async function commonBeforeEach() {
@@ -59,4 +70,5 @@ module.exports = {
   commonAfterEach,
   commonAfterAll,
   testTagIds,
+  testVideoIds,
 };
