@@ -12,11 +12,10 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  //   testCustomerIds,
 } = require("./_testCommon");
 const { fail } = require("assert");
 const Customer = require("./customer");
-const { JsonWebTokenError } = require("jsonwebtoken");
+const { NotFound } = require("http-errors");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
@@ -208,12 +207,31 @@ describe("update", function () {
     }
   });
 
-  test("bas request with no data", async function () {
+  test("bad request with no data", async function () {
     try {
       await Customer.update("testemail@email.com", {});
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();
+    }
+  });
+});
+
+describe("remove", function () {
+  test("works", async function () {
+    await Customer.remove("testemail@email.com");
+    const res = await db.query(
+      "SELECT email FROM customers WHERE email ='testemail@email.com'"
+    );
+    expect(res.rows.length).toEqual(0);
+  });
+
+  test("not found if no such customer", async function () {
+    try {
+      await Customer.remove("nope@nopemail.com");
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
     }
   });
 });

@@ -121,7 +121,7 @@ class Customer {
 
     const customer = result.rows[0];
 
-    if (!customer) throw new NotFoundError(`No job with id: ${id}`);
+    if (!customer) throw new NotFoundError(`No customer with email: ${email}`);
 
     return customer;
   }

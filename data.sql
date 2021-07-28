@@ -8,19 +8,26 @@ DROP TABLE IF EXISTS team;
 
 CREATE TABLE "team" (
   "id" SERIAL PRIMARY KEY,
-  "name" varchar,
+  "name" varchar NOT NULL,
   "bio" varchar,
   "img" varchar
 );
+
 
 DROP TABLE IF EXISTS videos;
 
 CREATE TABLE "videos" (
   "id" SERIAL PRIMARY KEY,
-  "name" varchar,
+  "name" varchar NOT NULL,
   "description" varchar,
-  "link" varchar,
-  "category" varchar
+  "link" varchar
+);
+
+DROP TABLE IF EXISTS tags;
+
+CREATE TABLE "tags" (
+  "id" SERIAL PRIMARY KEY,
+  "name" VARCHAR UNIQUE NOT NULL
 );
 
 DROP TABLE IF EXISTS customers;
@@ -40,6 +47,16 @@ CREATE TABLE "admins" (
   "username" varchar,
   "password" varchar
 );
+
+DROP TABLE IF EXISTS videos_tags;
+
+CREATE TABLE "videos_tags" (
+  video_id int REFERENCES videos ON DELETE CASCADE,
+  tag_id int REFERENCES tags ON DELETE CASCADE,
+  PRIMARY KEY (video_id, tag_id)
+);
+
+
 
 DROP DATABASE IF EXISTS ayc_test;
 
@@ -47,21 +64,30 @@ CREATE DATABASE ayc_test;
 
 \c ayc_test
 
+DROP TABLE IF EXISTS team;
+
 CREATE TABLE "team" (
   "id" SERIAL PRIMARY KEY,
-  "name" varchar,
+  "name" varchar NOT NULL,
   "bio" varchar,
   "img" varchar
 );
+
 
 DROP TABLE IF EXISTS videos;
 
 CREATE TABLE "videos" (
   "id" SERIAL PRIMARY KEY,
-  "name" varchar,
+  "name" varchar NOT NULL,
   "description" varchar,
-  "link" varchar,
-  "category" varchar
+  "link" varchar
+);
+
+DROP TABLE IF EXISTS tags;
+
+CREATE TABLE "tags" (
+  "id" SERIAL PRIMARY KEY,
+  "name" VARCHAR UNIQUE NOT NULL
 );
 
 DROP TABLE IF EXISTS customers;
@@ -80,4 +106,12 @@ CREATE TABLE "admins" (
   "id" SERIAL PRIMARY KEY,
   "username" varchar,
   "password" varchar
+);
+
+DROP TABLE IF EXISTS videos_tags;
+
+CREATE TABLE "videos_tags" (
+  video_id int REFERENCES videos ON DELETE CASCADE,
+  tag_id int REFERENCES tags ON DELETE CASCADE,
+  PRIMARY KEY (video_id, tag_id)
 );

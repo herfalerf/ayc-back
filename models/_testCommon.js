@@ -2,9 +2,13 @@ const bcrypt = require("bcrypt");
 const db = require("../db.js");
 const { BCRYPT_WORK_FACTOR } = require("../config");
 
+const testTagIds = [];
+
 async function commonBeforeAll() {
   await db.query("DELETE FROM team");
   await db.query("DELETE FROM customers");
+  await db.query("DELETE FROM tags");
+  await db.query("DELETE FROM admins");
 
   const resultsCustomers = await db.query(`
   INSERT INTO customers(name, email, phone, company)
@@ -28,6 +32,13 @@ async function commonBeforeAll() {
       await bcrypt.hash("password2", BCRYPT_WORK_FACTOR),
     ]
   );
+
+  const resultsTags = await db.query(`
+  INSERT INTO tags(name)
+  VALUES ('Tag1'), ('Tag2'), ('Tag3') 
+  RETURNING id`);
+
+  testTagIds.splice(0, 0, ...resultsTags.rows.map((r) => r.id));
 }
 
 async function commonBeforeEach() {
@@ -47,4 +58,5 @@ module.exports = {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
+  testTagIds,
 };

@@ -27,7 +27,6 @@ router.post("/", ensureAdmin, async function (req, res, next) {
     const validator = jsonSchema.validate(req.body, memberNewSchema);
     if (!validator.valid) {
       const errs = validator.errors.map((e) => e.stack);
-      console.log(validator);
       throw new BadRequestErrors(errs);
     }
     const member = await Member.addMember(req.body);
@@ -80,7 +79,6 @@ router.patch("/:name", ensureAdmin, async function (req, res, next) {
     const validator = jsonSchema.validate(req.body, memberUpdateSchema);
     if (!validator.valid) {
       const errs = validator.errors.map((e) => e.stack);
-      console.log(validator);
       throw new BadRequestErrors(errs);
     }
 
