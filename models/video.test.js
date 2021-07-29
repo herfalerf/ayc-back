@@ -88,6 +88,19 @@ describe("findAll", function () {
       },
     ]);
   });
+
+  test("works when providing tag", async function () {
+    let videos = await Video.findAll("Tag1");
+    expect(videos).toEqual([
+      {
+        id: expect.any(Number),
+        name: "v1",
+        description: "v1 describe",
+        link: "v1link.com",
+        tag: "Tag1",
+      },
+    ]);
+  });
 });
 
 // **************** get
@@ -100,7 +113,7 @@ describe("get", function () {
       name: "v1",
       description: "v1 describe",
       link: "v1link.com",
-      tags: [testTagIds[0]],
+      tags: ["Tag1"],
     });
   });
 

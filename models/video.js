@@ -38,14 +38,21 @@ class Video {
   // Find a list of videos
   //
   // Returns [{id, name, description, link}, ...videos]
-  static async findAll() {
-    let query = `SELECT
+  static async findAll(tag) {
+    let query = "";
+    if (tag) {
+      query = `SELECT videos.id, videos.name, videos.link, videos.description, tags.name as tag FROM videos JOIN videos_tags ON videos.id = videos_tags.video_id JOIN tags ON videos_tags.tag_id = tags.id WHERE tags.name = '${tag}'`;
+    } else {
+      query = `SELECT
                    id, 
                    name, 
                    description,
                    link
                    FROM videos`;
+    }
+
     const videosRes = await db.query(query);
+
     return videosRes.rows;
   }
 
@@ -67,13 +74,14 @@ class Video {
     if (!video) throw new NotFoundError(`No video with id: ${id}`);
 
     const videoTagsRes = await db.query(
-      `SELECT vt.tag_id
+      `SELECT vt.tag_id, tags.name AS tag_name
          FROM videos_tags AS vt
+         JOIN tags ON vt.tag_id = tags.id
          WHERE vt.video_id = $1`,
       [id]
     );
 
-    video.tags = videoTagsRes.rows.map((t) => t.tag_id);
+    video.tags = videoTagsRes.rows.map((t) => t.tag_name);
     return video;
   }
 
