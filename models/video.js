@@ -65,6 +65,15 @@ class Video {
 
     const video = videoRes.rows[0];
     if (!video) throw new NotFoundError(`No video with id: ${id}`);
+
+    const videoTagsRes = await db.query(
+      `SELECT vt.tag_id
+         FROM videos_tags AS vt
+         WHERE vt.video_id = $1`,
+      [id]
+    );
+
+    video.tags = videoTagsRes.rows.map((t) => t.tag_id);
     return video;
   }
 
@@ -106,6 +115,34 @@ class Video {
     const video = result.rows[0];
 
     if (!video) throw new NotFoundError(`No video with id: ${id}`);
+  }
+
+  static async addVideoTag(videoId, tagId) {
+    const preCheck = await db.query(
+      `SELECT id 
+           FROM tags
+           WHERE id = $1`,
+      [tagId]
+    );
+    const tag = preCheck.rows[0];
+
+    if (!tag) throw new NotFoundError(`No tag with id: ${tagId}`);
+
+    const preCheck2 = await db.query(
+      `SELECT id
+           FROM videos
+           WHERE id = $1`,
+      [videoId]
+    );
+    const video = preCheck2.rows[0];
+
+    if (!video) throw new NotFoundError(`No video with id: ${videoId}`);
+
+    await db.query(
+      `INSERT INTO videos_tags (video_id, tag_id)
+         VALUES ($1, $2)`,
+      [videoId, tagId]
+    );
   }
 }
 

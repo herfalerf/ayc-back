@@ -50,6 +50,13 @@ async function commonBeforeAll() {
    RETURNING id`);
 
   testVideoIds.splice(0, 0, ...resultsVideos.rows.map((r) => r.id));
+
+  await db.query(
+    `INSERT INTO videos_tags(video_id, tag_id)
+       VALUES ($1, $2),
+              ($3, $4)`,
+    [testVideoIds[0], testTagIds[0], testVideoIds[1], testTagIds[1]]
+  );
 }
 
 async function commonBeforeEach() {

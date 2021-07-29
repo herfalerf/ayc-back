@@ -198,7 +198,7 @@ describe("update", function () {
     });
   });
 
-  test("not found if no such job", async function () {
+  test("not found if no such customer", async function () {
     try {
       await Customer.update("nope@email.com", updateData);
       fail();

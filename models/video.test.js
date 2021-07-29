@@ -100,6 +100,7 @@ describe("get", function () {
       name: "v1",
       description: "v1 describe",
       link: "v1link.com",
+      tags: [testTagIds[0]],
     });
   });
 
@@ -199,5 +200,21 @@ describe("remove", function () {
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();
     }
+  });
+});
+
+// ************* addVideoTag
+
+describe("addVideoTag", function () {
+  test("works", async function () {
+    await Video.addVideoTag(testVideoIds[2], testTagIds[0]);
+
+    const res = await db.query("SELECT * FROM videos_tags WHERE tag_id = $1", [
+      testTagIds[0],
+    ]);
+    expect(res.rows[0]).toEqual({
+      video_id: expect.any(Number),
+      tag_id: testTagIds[0],
+    });
   });
 });

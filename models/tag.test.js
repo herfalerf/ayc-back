@@ -59,7 +59,7 @@ describe("create", function () {
 
 // ****************** findAll
 
-describe("findALl", function () {
+describe("findAll", function () {
   test("works", async function () {
     let tags = await Tag.findAll();
     expect(tags).toEqual([
