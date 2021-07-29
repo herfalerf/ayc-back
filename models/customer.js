@@ -58,7 +58,7 @@ class Customer {
   //
   // Throws not found error if customer is not found
 
-  static async get(name) {
+  static async get(id) {
     const customerRes = await db.query(
       `
       SELECT id,
@@ -67,13 +67,13 @@ class Customer {
       phone, 
       company
       FROM customers
-      WHERE name = $1
+      WHERE id = $1
       `,
-      [name]
+      [id]
     );
 
     if (!customerRes.rows[0])
-      throw new NotFoundError(`No customer with name ${name}`);
+      throw new NotFoundError(`No customer with id: ${id}`);
 
     return customerRes.rows;
   }
@@ -84,22 +84,22 @@ class Customer {
   // Data can include: { name, email, phone, company }
   //
   // Returns updated customer information { id, name, email, phone, company }
-  static async update(email, data) {
+  static async update(id, data) {
     const { setCols, values } = sqlForPartialUpdate(data, {});
-    const emailVarIdx = "$" + (values.length + 1);
+    const idVarIdx = "$" + (values.length + 1);
 
     const querySql = `UPDATE customers
                       SET ${setCols}
-                      WHERE email = ${emailVarIdx}
+                      WHERE id = ${idVarIdx}
                       RETURNING id,
                                 name,
                                 email,
                                 phone,
                                 company`;
-    const result = await db.query(querySql, [...values, email]);
+    const result = await db.query(querySql, [...values, id]);
     const customer = result.rows[0];
 
-    if (!customer) throw new NotFoundError(`No customer with email: ${email}`);
+    if (!customer) throw new NotFoundError(`No customer with id: ${id}`);
 
     return customer;
   }
@@ -110,18 +110,18 @@ class Customer {
   //
   // Returns customer email
 
-  static async remove(email) {
+  static async remove(id) {
     const result = await db.query(
       `DELETE
        FROM customers
-       WHERE email = $1
-       RETURNING email`,
-      [email]
+       WHERE id = $1
+       RETURNING id`,
+      [id]
     );
 
     const customer = result.rows[0];
 
-    if (!customer) throw new NotFoundError(`No customer with email: ${email}`);
+    if (!customer) throw new NotFoundError(`No customer with id: ${id}`);
 
     return customer;
   }

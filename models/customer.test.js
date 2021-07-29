@@ -12,6 +12,7 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
+  testCustomerIds,
 } = require("./_testCommon");
 const { fail } = require("assert");
 const Customer = require("./customer");
@@ -95,10 +96,10 @@ describe("findAll", function () {
 
 describe("get", function () {
   test("works", async function () {
-    let customers = await Customer.get("Test Cust");
+    let customers = await Customer.get(testCustomerIds[0]);
     expect(customers).toEqual([
       {
-        id: expect.any(Number),
+        id: testCustomerIds[0],
         name: "Test Cust",
         email: "testemail@email.com",
         phone: "111-111-1111",
@@ -107,38 +108,38 @@ describe("get", function () {
     ]);
   });
 
-  test("works with duplicate names", async function () {
-    const newCustomer = {
-      name: "Test Cust",
-      email: "test@test.com",
-      phone: "999-999-9999",
-      company: "Test Company",
-    };
+  //   test("works with duplicate names", async function () {
+  //     const newCustomer = {
+  //       name: "Test Cust",
+  //       email: "test@test.com",
+  //       phone: "999-999-9999",
+  //       company: "Test Company",
+  //     };
 
-    await Customer.add(newCustomer);
+  //     await Customer.add(newCustomer);
 
-    let customers = await Customer.get("Test Cust");
-    expect(customers).toEqual([
-      {
-        id: expect.any(Number),
-        name: "Test Cust",
-        email: "testemail@email.com",
-        phone: "111-111-1111",
-        company: "Test Company",
-      },
-      {
-        id: expect.any(Number),
-        name: "Test Cust",
-        email: "test@test.com",
-        phone: "999-999-9999",
-        company: "Test Company",
-      },
-    ]);
-  });
+  //     let customers = await Customer.get("Test Cust");
+  //     expect(customers).toEqual([
+  //       {
+  //         id: expect.any(Number),
+  //         name: "Test Cust",
+  //         email: "testemail@email.com",
+  //         phone: "111-111-1111",
+  //         company: "Test Company",
+  //       },
+  //       {
+  //         id: expect.any(Number),
+  //         name: "Test Cust",
+  //         email: "test@test.com",
+  //         phone: "999-999-9999",
+  //         company: "Test Company",
+  //       },
+  //     ]);
+  //   });
 
   test("not found if no such customer", async function () {
     try {
-      await Customer.get("Nope");
+      await Customer.get(0);
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();
@@ -157,21 +158,21 @@ describe("update", function () {
   };
 
   test("works", async function () {
-    let customer = await Customer.update("testemail@email.com", updateData);
+    let customer = await Customer.update(testCustomerIds[0], updateData);
     expect(customer).toEqual({
-      id: expect.any(Number),
+      id: testCustomerIds[0],
       ...updateData,
     });
 
     const result = await db.query(`
     SELECT id, name, email, phone, company
     FROM customers
-    WHERE email = 'updateemail@email.com'
+    WHERE id = ${testCustomerIds[0]}
     `);
 
     expect(result.rows).toEqual([
       {
-        id: expect.any(Number),
+        id: testCustomerIds[0],
         name: "Update Cust",
         email: "updateemail@email.com",
         phone: "333-333-33333",
@@ -189,18 +190,18 @@ describe("update", function () {
     };
 
     let customer = await Customer.update(
-      "testemail@email.com",
+      testCustomerIds[0],
       updateDataSetNulls
     );
     expect(customer).toEqual({
-      id: expect.any(Number),
+      id: testCustomerIds[0],
       ...updateDataSetNulls,
     });
   });
 
   test("not found if no such customer", async function () {
     try {
-      await Customer.update("nope@email.com", updateData);
+      await Customer.update(0, updateData);
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();
@@ -209,7 +210,7 @@ describe("update", function () {
 
   test("bad request with no data", async function () {
     try {
-      await Customer.update("testemail@email.com", {});
+      await Customer.update(testCustomerIds[0], {});
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();
@@ -219,16 +220,16 @@ describe("update", function () {
 
 describe("remove", function () {
   test("works", async function () {
-    await Customer.remove("testemail@email.com");
+    await Customer.remove(testCustomerIds[0]);
     const res = await db.query(
-      "SELECT email FROM customers WHERE email ='testemail@email.com'"
+      `SELECT id FROM customers WHERE id ='${testCustomerIds[0]}'`
     );
     expect(res.rows.length).toEqual(0);
   });
 
   test("not found if no such customer", async function () {
     try {
-      await Customer.remove("nope@nopemail.com");
+      await Customer.remove(0);
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();

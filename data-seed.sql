@@ -45,4 +45,7 @@ VALUES ('1', '1'),
        ('2', '3'),
        ('2', '2'),
        ('3', '3'),
-       ('4', '2')
+       ('4', '2');
+
+INSERT INTO admins (username, password)
+VALUES ('super', '$2b$12$m/bLkUAj6w4l7wj0vL7PY.WcyOVXxXoF42oVPTGPPUpKFfLBO.1D6');

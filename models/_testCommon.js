@@ -4,6 +4,7 @@ const { BCRYPT_WORK_FACTOR } = require("../config");
 
 const testTagIds = [];
 const testVideoIds = [];
+const testCustomerIds = [];
 
 async function commonBeforeAll() {
   await db.query("DELETE FROM team");
@@ -16,7 +17,9 @@ async function commonBeforeAll() {
   INSERT INTO customers(name, email, phone, company)
   VALUES ('Test Cust', 'testemail@email.com', '111-111-1111', 'Test Company'),
          ('Test Cust2', 'testemail2@email.com', '222-222-2222', 'Test Company 2')
-  `);
+  RETURNING id`);
+
+  testCustomerIds.splice(0, 0, ...resultsCustomers.rows.map((r) => r.id));
 
   const resultsTeam = await db.query(`
     INSERT INTO team(name, bio, img)
@@ -78,4 +81,5 @@ module.exports = {
   commonAfterAll,
   testTagIds,
   testVideoIds,
+  testCustomerIds,
 };
