@@ -22,8 +22,8 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-// *********** CREATE
-describe("create", function () {
+// *********** ADD
+describe("add", function () {
   const newVideo = {
     name: "New Vid",
     description: "New Des",
@@ -31,7 +31,7 @@ describe("create", function () {
   };
 
   test("works", async function () {
-    let video = await Video.create(newVideo);
+    let video = await Video.add(newVideo);
     expect(video).toEqual({
       id: expect.any(Number),
       ...newVideo,
@@ -53,8 +53,8 @@ describe("create", function () {
 
   test("bad request with dupe", async function () {
     try {
-      await Video.create(newVideo);
-      await Video.create(newVideo);
+      await Video.add(newVideo);
+      await Video.add(newVideo);
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();

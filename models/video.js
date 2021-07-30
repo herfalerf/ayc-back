@@ -11,7 +11,7 @@ class Video {
   //
   // Returns { id, name description, link }
 
-  static async create({ name, description, link }) {
+  static async add({ name, description, link }) {
     const duplicateCheck = await db.query(
       `SELECT name
              FROM videos
