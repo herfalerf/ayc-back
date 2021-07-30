@@ -5,7 +5,7 @@ const { BadRequestError, NotFoundError } = require("../expressError");
 const { sqlForPartialUpdate } = require("../helpers/sql");
 
 class Video {
-  // Create a video (from data), update db, return new job data.
+  // Add a video (from data), update db, return new job data.
   //
   // data should be { name, description, link }
   //

@@ -44,7 +44,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
 router.get("/", async function (req, res, next) {
   try {
     const tags = await Tag.findAll();
-    return res.json({ videos });
+    return res.json({ tags });
   } catch (err) {
     return next(err);
   }
@@ -83,6 +83,7 @@ router.patch("/:id", ensureAdmin, async function (req, res, next) {
     // }
 
     const tag = await Tag.update(req.params.id, req.body);
+    console.log(tag);
     return res.json({ tag });
   } catch (err) {
     return next(err);

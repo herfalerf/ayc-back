@@ -103,7 +103,7 @@ describe("get", function () {
 // *************** update
 
 describe("update", function () {
-  let updateData = "New Name";
+  let updateData = { name: "New Name" };
   test("works", async function () {
     let tag = await Tag.update(testTagIds[0], updateData);
     expect(tag).toEqual({
@@ -131,7 +131,7 @@ describe("update", function () {
 
   test("bad request with no data", async function () {
     try {
-      await Tag.update(testTagIds[0]);
+      await Tag.update(testTagIds[0], {});
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();

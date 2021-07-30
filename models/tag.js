@@ -29,7 +29,7 @@ class Tag {
          RETURNING id, name`,
       [name]
     );
-    let tag = result.rows[0];
+    const tag = result.rows[0];
 
     return tag;
   }
@@ -59,18 +59,19 @@ class Tag {
     return tag;
   }
 
-  static async update(id, newName) {
-    if (!newName) throw new BadRequestError("No data");
+  static async update(id, { name }) {
+    if (!name) throw new BadRequestError("No data");
     const tagRes = await db.query(
       `UPDATE tags
                         SET name = $2
                         WHERE id = $1
                         RETURNING id,
                         name`,
-      [id, newName]
+      [id, name]
     );
 
     const tag = tagRes.rows[0];
+    console.log(tag);
 
     if (!tag) throw new NotFoundError(`No tag with id: ${id}`);
 
