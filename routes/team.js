@@ -4,7 +4,6 @@
 
 const jsonSchema = require("jsonschema");
 const express = require("express");
-const { BadRequestError } = require("../expressError");
 const Member = require("../models/member");
 const { toTitle } = require("../helpers/toTitle");
 const { ensureAdmin } = require("../middleware/auth");
@@ -51,7 +50,7 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-// GET /[name]
+// GET /:name
 //
 // Get member by name: { id, name, bio, img }
 //
@@ -68,7 +67,7 @@ router.get("/:name", async function (req, res, next) {
   }
 });
 
-// PATCH /team/:name { field1, field2 } => { member }
+// PATCH /:name { field1, field2 } => { member }
 // Patches member data.
 // Fields can be: { name, bio, img }
 // Returns { id, name, bio, img }
@@ -90,7 +89,7 @@ router.patch("/:name", ensureAdmin, async function (req, res, next) {
   }
 });
 
-// DELETE /team/:name => { deleted: name }
+// DELETE /:name => { deleted: name }
 //
 // Authorization: Admin
 

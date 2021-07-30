@@ -97,15 +97,13 @@ describe("findAll", function () {
 describe("get", function () {
   test("works", async function () {
     let customers = await Customer.get(testCustomerIds[0]);
-    expect(customers).toEqual([
-      {
-        id: testCustomerIds[0],
-        name: "Test Cust",
-        email: "testemail@email.com",
-        phone: "111-111-1111",
-        company: "Test Company",
-      },
-    ]);
+    expect(customers).toEqual({
+      id: testCustomerIds[0],
+      name: "Test Cust",
+      email: "testemail@email.com",
+      phone: "111-111-1111",
+      company: "Test Company",
+    });
   });
 
   //   test("works with duplicate names", async function () {
@@ -157,6 +155,11 @@ describe("update", function () {
     company: "Update Company",
   };
 
+  let partialUpdateData = {
+    name: "Update Cust",
+    email: "updateemail@email.com",
+  };
+
   test("works", async function () {
     let customer = await Customer.update(testCustomerIds[0], updateData);
     expect(customer).toEqual({
@@ -164,6 +167,31 @@ describe("update", function () {
       ...updateData,
     });
 
+    const result = await db.query(`
+      SELECT id, name, email, phone, company
+      FROM customers
+      WHERE id = ${testCustomerIds[0]}
+      `);
+
+    expect(result.rows).toEqual([
+      {
+        id: testCustomerIds[0],
+        name: "Update Cust",
+        email: "updateemail@email.com",
+        phone: "333-333-33333",
+        company: "Update Company",
+      },
+    ]);
+  });
+
+  test("works: partial update", async function () {
+    let customer = await Customer.update(testCustomerIds[0], partialUpdateData);
+    expect(customer).toEqual({
+      id: testCustomerIds[0],
+      phone: "111-111-1111",
+      company: "Test Company",
+      ...partialUpdateData,
+    });
     const result = await db.query(`
     SELECT id, name, email, phone, company
     FROM customers
@@ -175,8 +203,8 @@ describe("update", function () {
         id: testCustomerIds[0],
         name: "Update Cust",
         email: "updateemail@email.com",
-        phone: "333-333-33333",
-        company: "Update Company",
+        phone: "111-111-1111",
+        company: "Test Company",
       },
     ]);
   });

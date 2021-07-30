@@ -75,7 +75,7 @@ class Customer {
     if (!customerRes.rows[0])
       throw new NotFoundError(`No customer with id: ${id}`);
 
-    return customerRes.rows;
+    return customerRes.rows[0];
   }
 
   // Updates customer information based on email address.
