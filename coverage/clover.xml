@@ -1,118 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1627620741137" clover="3.2.0">
-  <project timestamp="1627620741137" name="All files">
-    <metrics statements="354" coveredstatements="340" conditionals="80" coveredconditionals="70" methods="63" coveredmethods="59" elements="497" coveredelements="469" complexity="0" loc="354" ncloc="354" packages="5" files="18" classes="18"/>
+<coverage generated="1627681429365" clover="3.2.0">
+  <project timestamp="1627681429365" name="All files">
+    <metrics statements="414" coveredstatements="403" conditionals="88" coveredconditionals="79" methods="72" coveredmethods="69" elements="574" coveredelements="551" complexity="0" loc="414" ncloc="414" packages="5" files="19" classes="19"/>
     <package name="ayc-back">
-      <metrics statements="50" coveredstatements="48" conditionals="20" coveredconditionals="16" methods="8" coveredmethods="7"/>
+      <metrics statements="52" coveredstatements="50" conditionals="20" coveredconditionals="16" methods="8" coveredmethods="7"/>
       <file name="app.js" path="/home/jpendy/springboard/ayc-back/app.js">
-        <metrics statements="22" coveredstatements="22" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="17" count="4" type="stmt"/>
-        <line num="18" count="4" type="stmt"/>
-        <line num="19" count="4" type="stmt"/>
-        <line num="21" count="4" type="stmt"/>
-        <line num="22" count="4" type="stmt"/>
-        <line num="23" count="4" type="stmt"/>
-        <line num="26" count="4" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="31" count="4" type="stmt"/>
-        <line num="32" count="13" type="cond" truecount="2" falsecount="0"/>
-        <line num="33" count="13" type="cond" truecount="1" falsecount="1"/>
-        <line num="34" count="13" type="stmt"/>
-        <line num="36" count="13" type="stmt"/>
-        <line num="41" count="4" type="stmt"/>
+        <metrics statements="24" coveredstatements="24" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="34" count="32" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="32" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="32" type="stmt"/>
+        <line num="38" count="32" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
       </file>
       <file name="config.js" path="/home/jpendy/springboard/ayc-back/config.js">
         <metrics statements="13" coveredstatements="13" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
-        <line num="4" count="12" type="stmt"/>
-        <line num="5" count="12" type="stmt"/>
-        <line num="7" count="12" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="12" type="cond" truecount="2" falsecount="0"/>
-        <line num="13" count="24" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="12" type="cond" truecount="2" falsecount="0"/>
-        <line num="21" count="12" type="stmt"/>
-        <line num="22" count="12" type="stmt"/>
-        <line num="23" count="12" type="stmt"/>
-        <line num="24" count="12" type="stmt"/>
-        <line num="25" count="12" type="stmt"/>
-        <line num="26" count="12" type="stmt"/>
-        <line num="28" count="12" type="stmt"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
+        <line num="7" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="26" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="13" type="stmt"/>
+        <line num="22" count="13" type="stmt"/>
+        <line num="23" count="13" type="stmt"/>
+        <line num="24" count="13" type="stmt"/>
+        <line num="25" count="13" type="stmt"/>
+        <line num="26" count="13" type="stmt"/>
+        <line num="28" count="13" type="stmt"/>
       </file>
       <file name="db.js" path="/home/jpendy/springboard/ayc-back/db.js">
         <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
-        <line num="4" count="9" type="stmt"/>
-        <line num="5" count="9" type="stmt"/>
-        <line num="9" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="4" count="10" type="stmt"/>
+        <line num="5" count="10" type="stmt"/>
+        <line num="9" count="10" type="cond" truecount="1" falsecount="1"/>
         <line num="10" count="0" type="stmt"/>
-        <line num="17" count="9" type="stmt"/>
-        <line num="22" count="9" type="stmt"/>
-        <line num="24" count="9" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="24" count="10" type="stmt"/>
       </file>
       <file name="expressError.js" path="/home/jpendy/springboard/ayc-back/expressError.js">
         <metrics statements="8" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="4"/>
-        <line num="9" count="34" type="stmt"/>
-        <line num="10" count="34" type="stmt"/>
-        <line num="11" count="34" type="stmt"/>
-        <line num="19" count="20" type="stmt"/>
-        <line num="27" count="7" type="stmt"/>
-        <line num="35" count="7" type="stmt"/>
+        <line num="9" count="53" type="stmt"/>
+        <line num="10" count="53" type="stmt"/>
+        <line num="11" count="53" type="stmt"/>
+        <line num="19" count="23" type="stmt"/>
+        <line num="27" count="13" type="stmt"/>
+        <line num="35" count="17" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="47" count="11" type="stmt"/>
+        <line num="47" count="12" type="stmt"/>
       </file>
     </package>
     <package name="ayc-back.helpers">
       <metrics statements="15" coveredstatements="15" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
       <file name="sql.js" path="/home/jpendy/springboard/ayc-back/helpers/sql.js">
         <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
-        <line num="1" count="10" type="stmt"/>
-        <line num="5" count="18" type="stmt"/>
-        <line num="6" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="15" type="stmt"/>
-        <line num="10" count="35" type="cond" truecount="2" falsecount="0"/>
-        <line num="13" count="15" type="stmt"/>
-        <line num="19" count="10" type="stmt"/>
+        <line num="1" count="11" type="stmt"/>
+        <line num="5" count="20" type="stmt"/>
+        <line num="6" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="10" count="37" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="17" type="stmt"/>
+        <line num="19" count="11" type="stmt"/>
       </file>
       <file name="toTitle.js" path="/home/jpendy/springboard/ayc-back/helpers/toTitle.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="4" count="7" type="stmt"/>
         <line num="7" count="11" type="stmt"/>
-        <line num="12" count="5" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
       </file>
       <file name="tokens.js" path="/home/jpendy/springboard/ayc-back/helpers/tokens.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="2" count="5" type="stmt"/>
-        <line num="12" count="8" type="stmt"/>
-        <line num="16" count="8" type="stmt"/>
-        <line num="19" count="5" type="stmt"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="12" count="10" type="stmt"/>
+        <line num="16" count="10" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
       </file>
     </package>
     <package name="ayc-back.middleware">
       <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="auth.js" path="/home/jpendy/springboard/ayc-back/middleware/auth.js">
         <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="7" count="5" type="stmt"/>
-        <line num="13" count="27" type="stmt"/>
-        <line num="14" count="27" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="27" type="cond" truecount="2" falsecount="0"/>
-        <line num="17" count="15" type="stmt"/>
-        <line num="18" count="15" type="stmt"/>
-        <line num="20" count="26" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="13" count="54" type="stmt"/>
+        <line num="14" count="54" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="54" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="33" type="stmt"/>
+        <line num="18" count="33" type="stmt"/>
+        <line num="20" count="53" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
-        <line num="27" count="18" type="stmt"/>
-        <line num="28" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="29" count="13" type="stmt"/>
-        <line num="31" count="5" type="stmt"/>
-        <line num="35" count="5" type="stmt"/>
+        <line num="27" count="42" type="stmt"/>
+        <line num="28" count="42" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="31" type="stmt"/>
+        <line num="31" count="11" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
       </file>
     </package>
     <package name="ayc-back.models">
@@ -146,11 +148,11 @@
       </file>
       <file name="admin.js" path="/home/jpendy/springboard/ayc-back/models/admin.js">
         <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
-        <line num="12" count="5" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
         <line num="25" count="4" type="stmt"/>
         <line num="32" count="4" type="stmt"/>
         <line num="34" count="4" type="cond" truecount="2" falsecount="0"/>
@@ -159,20 +161,20 @@
         <line num="38" count="2" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
         <line num="43" count="2" type="stmt"/>
-        <line num="47" count="5" type="stmt"/>
+        <line num="47" count="6" type="stmt"/>
       </file>
       <file name="customer.js" path="/home/jpendy/springboard/ayc-back/models/customer.js">
         <metrics statements="29" coveredstatements="29" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="19" count="10" type="stmt"/>
-        <line num="26" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
+        <line num="26" count="13" type="cond" truecount="2" falsecount="0"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="29" count="9" type="stmt"/>
-        <line num="36" count="9" type="stmt"/>
-        <line num="38" count="9" type="stmt"/>
+        <line num="29" count="12" type="stmt"/>
+        <line num="36" count="12" type="stmt"/>
+        <line num="38" count="12" type="stmt"/>
         <line num="45" count="2" type="stmt"/>
         <line num="49" count="2" type="stmt"/>
         <line num="50" count="2" type="stmt"/>
@@ -191,19 +193,19 @@
         <line num="122" count="4" type="stmt"/>
         <line num="124" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="126" count="2" type="stmt"/>
-        <line num="130" count="5" type="stmt"/>
+        <line num="130" count="6" type="stmt"/>
       </file>
       <file name="member.js" path="/home/jpendy/springboard/ayc-back/models/member.js">
         <metrics statements="27" coveredstatements="26" conditionals="8" coveredconditionals="7" methods="5" coveredmethods="5"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="13" count="8" type="stmt"/>
-        <line num="20" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="13" count="11" type="stmt"/>
+        <line num="20" count="11" type="cond" truecount="1" falsecount="1"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="24" count="8" type="stmt"/>
-        <line num="34" count="8" type="stmt"/>
-        <line num="35" count="8" type="stmt"/>
+        <line num="24" count="11" type="stmt"/>
+        <line num="34" count="11" type="stmt"/>
+        <line num="35" count="11" type="stmt"/>
         <line num="41" count="2" type="stmt"/>
         <line num="51" count="2" type="stmt"/>
         <line num="59" count="4" type="stmt"/>
@@ -221,7 +223,7 @@
         <line num="116" count="4" type="stmt"/>
         <line num="118" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="120" count="2" type="stmt"/>
-        <line num="124" count="6" type="stmt"/>
+        <line num="124" count="7" type="stmt"/>
       </file>
       <file name="tag.js" path="/home/jpendy/springboard/ayc-back/models/tag.js">
         <metrics statements="25" coveredstatements="25" conditionals="10" coveredconditionals="10" methods="5" coveredmethods="5"/>
@@ -253,37 +255,37 @@
       </file>
       <file name="video.js" path="/home/jpendy/springboard/ayc-back/models/video.js">
         <metrics statements="39" coveredstatements="39" conditionals="14" coveredconditionals="12" methods="7" coveredmethods="7"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="22" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="22" count="13" type="cond" truecount="2" falsecount="0"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="33" count="2" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
-        <line num="43" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="12" type="stmt"/>
+        <line num="33" count="12" type="stmt"/>
+        <line num="35" count="12" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="44" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="54" count="2" type="stmt"/>
-        <line num="56" count="2" type="stmt"/>
-        <line num="63" count="2" type="stmt"/>
-        <line num="73" count="2" type="stmt"/>
-        <line num="74" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="76" count="1" type="stmt"/>
-        <line num="84" count="1" type="stmt"/>
-        <line num="85" count="1" type="stmt"/>
-        <line num="94" count="4" type="stmt"/>
-        <line num="95" count="3" type="stmt"/>
-        <line num="97" count="3" type="stmt"/>
-        <line num="104" count="3" type="stmt"/>
-        <line num="105" count="3" type="stmt"/>
-        <line num="107" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="109" count="2" type="stmt"/>
-        <line num="115" count="2" type="stmt"/>
-        <line num="123" count="2" type="stmt"/>
-        <line num="125" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="56" count="3" type="stmt"/>
+        <line num="63" count="4" type="stmt"/>
+        <line num="73" count="4" type="stmt"/>
+        <line num="74" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="76" count="2" type="stmt"/>
+        <line num="84" count="2" type="stmt"/>
+        <line num="85" count="2" type="stmt"/>
+        <line num="94" count="6" type="stmt"/>
+        <line num="95" count="5" type="stmt"/>
+        <line num="97" count="5" type="stmt"/>
+        <line num="104" count="5" type="stmt"/>
+        <line num="105" count="5" type="stmt"/>
+        <line num="107" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="109" count="3" type="stmt"/>
+        <line num="115" count="4" type="stmt"/>
+        <line num="123" count="4" type="stmt"/>
+        <line num="125" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="129" count="1" type="stmt"/>
         <line num="135" count="1" type="stmt"/>
         <line num="137" count="1" type="cond" truecount="1" falsecount="1"/>
@@ -291,44 +293,49 @@
         <line num="145" count="1" type="stmt"/>
         <line num="147" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="149" count="1" type="stmt"/>
-        <line num="157" count="1" type="stmt"/>
+        <line num="157" count="6" type="stmt"/>
       </file>
     </package>
     <package name="ayc-back.routes">
-      <metrics statements="116" coveredstatements="105" conditionals="6" coveredconditionals="3" methods="18" coveredmethods="15"/>
+      <metrics statements="174" coveredstatements="166" conditionals="14" coveredconditionals="12" methods="27" coveredmethods="25"/>
       <file name="_testCommon.js" path="/home/jpendy/springboard/ayc-back/routes/_testCommon.js">
-        <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="8" count="3" type="stmt"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="19" count="3" type="stmt"/>
-        <line num="25" count="3" type="stmt"/>
-        <line num="33" count="3" type="stmt"/>
-        <line num="42" count="3" type="stmt"/>
-        <line num="55" count="22" type="stmt"/>
-        <line num="59" count="22" type="stmt"/>
-        <line num="63" count="3" type="stmt"/>
-        <line num="66" count="3" type="stmt"/>
-        <line num="67" count="3" type="stmt"/>
-        <line num="69" count="3" type="stmt"/>
+        <metrics statements="25" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="61" count="4" type="stmt"/>
+        <line num="74" count="49" type="stmt"/>
+        <line num="78" count="49" type="stmt"/>
+        <line num="82" count="4" type="stmt"/>
+        <line num="85" count="4" type="stmt"/>
+        <line num="86" count="4" type="stmt"/>
+        <line num="88" count="4" type="stmt"/>
       </file>
       <file name="auth.js" path="/home/jpendy/springboard/ayc-back/routes/auth.js">
         <metrics statements="19" coveredstatements="16" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="1"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="14" count="4" type="stmt"/>
-        <line num="22" count="4" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="cond" truecount="1" falsecount="1"/>
@@ -339,90 +346,146 @@
         <line num="32" count="1" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
-        <line num="39" count="4" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
       </file>
       <file name="customers.js" path="/home/jpendy/springboard/ayc-back/routes/customers.js">
-        <metrics statements="32" coveredstatements="30" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="24" count="4" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="44" count="4" type="stmt"/>
+        <metrics statements="42" coveredstatements="41" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
         <line num="46" count="1" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
-        <line num="59" count="4" type="stmt"/>
+        <line num="59" count="5" type="stmt"/>
         <line num="60" count="2" type="stmt"/>
         <line num="61" count="2" type="stmt"/>
         <line num="62" count="1" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
-        <line num="75" count="4" type="stmt"/>
-        <line num="76" count="2" type="stmt"/>
+        <line num="75" count="5" type="stmt"/>
+        <line num="76" count="4" type="stmt"/>
+        <line num="77" count="4" type="stmt"/>
+        <line num="78" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="79" count="2" type="stmt"/>
+        <line num="80" count="2" type="stmt"/>
         <line num="83" count="2" type="stmt"/>
         <line num="84" count="1" type="stmt"/>
-        <line num="86" count="1" type="stmt"/>
-        <line num="96" count="4" type="stmt"/>
+        <line num="86" count="3" type="stmt"/>
+        <line num="96" count="5" type="stmt"/>
         <line num="97" count="2" type="stmt"/>
         <line num="98" count="2" type="stmt"/>
         <line num="99" count="1" type="stmt"/>
         <line num="101" count="1" type="stmt"/>
-        <line num="105" count="4" type="stmt"/>
+        <line num="105" count="5" type="stmt"/>
       </file>
       <file name="team.js" path="/home/jpendy/springboard/ayc-back/routes/team.js">
-        <metrics statements="45" coveredstatements="39" conditionals="4" coveredconditionals="2" methods="7" coveredmethods="5"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="14" count="4" type="stmt"/>
-        <line num="24" count="4" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="27" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="44" count="4" type="stmt"/>
+        <metrics statements="46" coveredstatements="45" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="60" count="5" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="77" count="5" type="stmt"/>
+        <line num="78" count="3" type="stmt"/>
+        <line num="79" count="3" type="stmt"/>
+        <line num="80" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="85" count="2" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="89" count="2" type="stmt"/>
+        <line num="97" count="5" type="stmt"/>
+        <line num="98" count="2" type="stmt"/>
+        <line num="99" count="2" type="stmt"/>
+        <line num="100" count="2" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="107" count="5" type="stmt"/>
+      </file>
+      <file name="videos.js" path="/home/jpendy/springboard/ayc-back/routes/videos.js">
+        <metrics statements="42" coveredstatements="39" conditionals="4" coveredconditionals="3" methods="7" coveredmethods="6"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
         <line num="46" count="1" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
-        <line num="59" count="4" type="stmt"/>
+        <line num="59" count="5" type="stmt"/>
         <line num="60" count="2" type="stmt"/>
         <line num="61" count="2" type="stmt"/>
-        <line num="63" count="2" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
-        <line num="76" count="4" type="stmt"/>
+        <line num="75" count="5" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
         <line num="77" count="2" type="stmt"/>
-        <line num="78" count="2" type="stmt"/>
-        <line num="79" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="78" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="84" count="2" type="stmt"/>
-        <line num="85" count="2" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
         <line num="86" count="1" type="stmt"/>
-        <line num="88" count="1" type="stmt"/>
-        <line num="96" count="4" type="stmt"/>
+        <line num="96" count="5" type="stmt"/>
         <line num="97" count="2" type="stmt"/>
         <line num="98" count="2" type="stmt"/>
-        <line num="99" count="2" type="stmt"/>
-        <line num="100" count="1" type="stmt"/>
-        <line num="102" count="1" type="stmt"/>
-        <line num="106" count="4" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="105" count="5" type="stmt"/>
       </file>
     </package>
   </project>

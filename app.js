@@ -12,6 +12,7 @@ const teamRoutes = require("./routes/team");
 const authRoutes = require("./routes/auth");
 const customersRoutes = require("./routes/customers");
 const videoRoutes = require("./routes/videos");
+const tagRoutes = require("./routes/tags");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/team", teamRoutes);
 app.use("/auth", authRoutes);
 app.use("/customers", customersRoutes);
 app.use("/videos", videoRoutes);
+app.use("/tags", tagRoutes);
 
 //Handle 404 errors
 app.use(function (req, res, next) {
