@@ -64,63 +64,63 @@ describe("POST /videos", function () {
     });
   });
 
-  //   test("bad request with incorrect properties", async function () {
-  //     const resp = await request(app)
-  //       .post("/videos")
-  //       .send({
-  //         name: "New Vid",
-  //         description: "A video about stuff",
-  //         link: "alinktoavideo.com",
-  //         bio: "why do i have a bio of a video?",
-  //       })
-  //       .set("authorization", `Bearer ${a1Token}`);
+  test("bad request with incorrect properties", async function () {
+    const resp = await request(app)
+      .post("/videos")
+      .send({
+        name: "New Vid",
+        description: "A video about stuff",
+        link: "alinktoavideo.com",
+        bio: "why do i have a bio of a video?",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
 
-  //     expect(resp.statusCode).toEqual(400);
-  //     expect(resp.body).toEqual({
-  //       error: {
-  //         message: [
-  //           'instance is not allowed to have the additional property "bio"',
-  //         ],
-  //         status: 400,
-  //       },
-  //     });
-  //   });
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: [
+          'instance is not allowed to have the additional property "bio"',
+        ],
+        status: 400,
+      },
+    });
+  });
 
-  //   test("bad request with no link", async function () {
-  //     const resp = await request(app)
-  //       .post("/videos")
-  //       .send({
-  //         name: "New Vid",
-  //         description: "A video about stuff",
-  //       })
-  //       .set("authorization", `Bearer ${a1Token}`);
+  test("bad request with no link", async function () {
+    const resp = await request(app)
+      .post("/videos")
+      .send({
+        name: "New Vid",
+        description: "A video about stuff",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
 
-  //     expect(resp.statusCode).toEqual(400);
-  //     expect(resp.body).toEqual({
-  //       error: {
-  //         message: ['instance requires property "link"'],
-  //         status: 400,
-  //       },
-  //     });
-  //   });
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: ['instance requires property "link"'],
+        status: 400,
+      },
+    });
+  });
 
-  //   test("bad request with no name", async function () {
-  //     const resp = await request(app)
-  //       .post("/videos")
-  //       .send({
-  //         description: "A video about stuff",
-  //         link: "alinktoavideo.com",
-  //       })
-  //       .set("authorization", `Bearer ${a1Token}`);
+  test("bad request with no name", async function () {
+    const resp = await request(app)
+      .post("/videos")
+      .send({
+        description: "A video about stuff",
+        link: "alinktoavideo.com",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
 
-  //     expect(resp.statusCode).toEqual(400);
-  //     expect(resp.body).toEqual({
-  //       error: {
-  //         message: ['instance requires property "name"'],
-  //         status: 400,
-  //       },
-  //     });
-  //   });
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: ['instance requires property "name"'],
+        status: 400,
+      },
+    });
+  });
 
   test("Unauthorized with no token", async function () {
     const resp = await request(app).post("/videos").send({
@@ -199,25 +199,25 @@ describe("PATCH /videos/:id", function () {
     });
   });
 
-  //   test("bad request with incorrect properties", async function () {
-  //     const resp = await request(app)
-  //       .patch(`/customers/${testVideoIds[0]}`)
-  //       .send({
-  //         name: "New Name",
-  //         bio: "new video bio",
-  //       })
-  //       .set("authorization", `Bearer ${a1Token}`);
+  test("bad request with incorrect properties", async function () {
+    const resp = await request(app)
+      .patch(`/customers/${testVideoIds[0]}`)
+      .send({
+        name: "New Name",
+        bio: "new video bio",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
 
-  //     expect(resp.statusCode).toEqual(400);
-  //     expect(resp.body).toEqual({
-  //       error: {
-  //         message: [
-  //           'instance is not allowed to have the additional property "bio"',
-  //         ],
-  //         status: 400,
-  //       },
-  //     });
-  //   });
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: [
+          'instance is not allowed to have the additional property "bio"',
+        ],
+        status: 400,
+      },
+    });
+  });
 
   test("not found on no such video id", async function () {
     const resp = await request(app)
