@@ -56,7 +56,7 @@ router.get("/", async function (req, res, next) {
 //
 // Authorization required: None
 
-router.get("/:id", ensureAdmin, async function (req, res, next) {
+router.get("/:id", async function (req, res, next) {
   try {
     const video = await Video.get(req.params.id);
     return res.json({ video });

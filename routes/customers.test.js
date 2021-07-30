@@ -14,7 +14,6 @@ const {
   a2Token,
   testCustomerIds,
 } = require("./_testCommon");
-const { ExpectationFailed } = require("http-errors");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
@@ -122,7 +121,7 @@ describe("POST /customers", function () {
   });
 });
 
-// GET /team
+// GET /customer
 
 describe("GET /customer", function () {
   test("works", async function () {

@@ -4,12 +4,15 @@ const Customer = require("../models/customer");
 const bcrypt = require("bcrypt");
 const { BCRYPT_WORK_FACTOR } = require("../config");
 const { createToken } = require("../helpers/tokens");
+const Video = require("../models/video");
 
 const testCustomerIds = [];
+const testVideoIds = [];
 
 async function commonBeforeAll() {
   await db.query("DELETE FROM team");
   await db.query("DELETE FROM customers");
+  await db.query("DELETE FROM videos");
 
   await Member.addMember({
     name: "Team Member",
@@ -36,6 +39,22 @@ async function commonBeforeAll() {
       email: "test2@email.com",
       phone: "222",
       company: "test2",
+    })
+  ).id;
+
+  testVideoIds[0] = (
+    await Video.add({
+      name: "Test1",
+      description: "Description1",
+      link: "link1.com",
+    })
+  ).id;
+
+  testVideoIds[1] = (
+    await Video.add({
+      name: "Test2",
+      description: "Description2",
+      link: "link2.com",
     })
   ).id;
 
@@ -74,4 +93,5 @@ module.exports = {
   a1Token,
   a2Token,
   testCustomerIds,
+  testVideoIds,
 };
