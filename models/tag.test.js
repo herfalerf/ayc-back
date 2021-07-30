@@ -21,14 +21,14 @@ beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-// *********** CREATE
-describe("create", function () {
+// *********** ADD
+describe("add", function () {
   const newTag = {
     name: "New Tag",
   };
 
   test("works", async function () {
-    let tag = await Tag.create(newTag);
+    let tag = await Tag.add(newTag);
     expect(tag).toEqual({
       id: expect.any(Number),
       ...newTag,
@@ -48,8 +48,8 @@ describe("create", function () {
 
   test("bad request with dupe", async function () {
     try {
-      await Tag.create(newTag);
-      await Tag.create(newTag);
+      await Tag.add(newTag);
+      await Tag.add(newTag);
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();

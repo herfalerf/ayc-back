@@ -49,3 +49,57 @@ router.get("/", async function (req, res, next) {
     return next(err);
   }
 });
+
+// GET /:id
+//
+// Get video by id: { id, name, description, link, }
+//
+// Authorization required: None
+
+router.get("/:id", ensureAdmin, async function (req, res, next) {
+  try {
+    const video = await Video.get(req.params.id);
+    return res.json({ video });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// PATCH /:id
+//
+// Update video data
+// Fields can be: { name, description, link }
+// Returns { id, name, description, link }
+// Authorization required: Admin
+
+router.patch("/:id", ensureAdmin, async function (req, res, next) {
+  try {
+    // const validator = jsonSchema.validate(req.body, customerUpdateSchema);
+    // if (!validator.valid) {
+    //   const errs = validator.errors.map((e) => e.stack);
+    //   throw new BadRequestError(errs);
+    // }
+
+    const video = await Video.update(req.params.id, req.body);
+    return res.json({ video });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// DELETE /:id
+//
+// Delete video by id
+//
+// Authorization: Admin
+
+router.delete("/:id", ensureAdmin, async function (req, res, next) {
+  try {
+    await Video.remove(req.params.id);
+    return res.json({ deleted: `Video with id: ${req.params.id}` });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+module.exports = router;
