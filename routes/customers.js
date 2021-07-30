@@ -2,15 +2,15 @@
 
 // Routes for customers
 
-const jsonschema = require("jsonschema");
+const jsonSchema = require("jsonschema");
 const express = require("express");
 
 const { BadRequestError } = require("../expressError");
 const { ensureAdmin } = require("../middleware/auth");
 const Customer = require("../models/customer");
 
-// const customerNewSchema = require("../schemas/customerNew.json");
-// const customerUpdateSchema = require("../schemas/customerUpdate.json");
+const customerNewSchema = require("../schemas/customerNew.json");
+const customerUpdateSchema = require("../schemas/customerUpdate.json");
 
 const router = express.Router();
 
@@ -23,11 +23,11 @@ const router = express.Router();
 
 router.post("/", ensureAdmin, async function (req, res, next) {
   try {
-    // const validator = jsonSchema.validate(req.body, customerNewSchema);
-    // if (!validator.valid) {
-    //   const errs = validator.errors.map((e) => e.stack);
-    //   throw new BadRequestErrors(errs);
-    // }
+    const validator = jsonSchema.validate(req.body, customerNewSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map((e) => e.stack);
+      throw new BadRequestError(errs);
+    }
     const customer = await Customer.add(req.body);
     return res.status(201).json({ customer });
   } catch (err) {
@@ -74,11 +74,11 @@ router.get("/:id", ensureAdmin, async function (req, res, next) {
 
 router.patch("/:id", ensureAdmin, async function (req, res, next) {
   try {
-    // const validator = jsonSchema.validate(req.body, customerUpdateSchema);
-    // if (!validator.valid) {
-    //   const errs = validator.errors.map((e) => e.stack);
-    //   throw new BadRequestErrors(errs);
-    // }
+    const validator = jsonSchema.validate(req.body, customerUpdateSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map((e) => e.stack);
+      throw new BadRequestError(errs);
+    }
 
     const customer = await Customer.update(req.params.id, req.body);
     return res.json({ customer });

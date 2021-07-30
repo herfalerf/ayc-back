@@ -6,6 +6,7 @@ const jsonSchema = require("jsonschema");
 const express = require("express");
 const Member = require("../models/member");
 const { toTitle } = require("../helpers/toTitle");
+const { BadRequestError } = require("../expressError");
 const { ensureAdmin } = require("../middleware/auth");
 
 const memberNewSchema = require("../schemas/memberNew.json");
@@ -26,7 +27,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
     const validator = jsonSchema.validate(req.body, memberNewSchema);
     if (!validator.valid) {
       const errs = validator.errors.map((e) => e.stack);
-      throw new BadRequestErrors(errs);
+      throw new BadRequestError(errs);
     }
     const member = await Member.addMember(req.body);
     return res.status(201).json({ member });
@@ -78,7 +79,7 @@ router.patch("/:name", ensureAdmin, async function (req, res, next) {
     const validator = jsonSchema.validate(req.body, memberUpdateSchema);
     if (!validator.valid) {
       const errs = validator.errors.map((e) => e.stack);
-      throw new BadRequestErrors(errs);
+      throw new BadRequestError(errs);
     }
 
     const formattedName = toTitle(req.params.name);

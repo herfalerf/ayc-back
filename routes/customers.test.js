@@ -47,6 +47,70 @@ describe("POST /customers", function () {
     });
   });
 
+  test("works with partial data", async function () {
+    const resp = await request(app)
+      .post("/customers")
+      .send({
+        name: "New Cust",
+        email: "new@email.com",
+        phone: "111-111-1111",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+
+    expect(resp.statusCode).toEqual(201);
+    expect(resp.body).toEqual({
+      customer: {
+        id: expect.any(Number),
+        name: "New Cust",
+        email: "new@email.com",
+        phone: "111-111-1111",
+        company: null,
+      },
+    });
+  });
+
+  test("bad request with incorrect properties", async function () {
+    const resp = await request(app)
+      .post("/customers")
+      .send({
+        name: "New Cust",
+        email: "new@email.com",
+        phone: "111-111-1111",
+        company: "Newcorp",
+        bio: "new customer bio",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: [
+          'instance is not allowed to have the additional property "bio"',
+        ],
+        status: 400,
+      },
+    });
+  });
+
+  test("bad request with no email", async function () {
+    const resp = await request(app)
+      .post("/customers")
+      .send({
+        name: "New Cust",
+        phone: "111-111-1111",
+        company: "Newcorp",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: ['instance requires property "email"'],
+        status: 400,
+      },
+    });
+  });
+
   test("Unauthorized with no token", async function () {
     const resp = await request(app).post("/customers").send({
       name: "New Cust",
@@ -139,6 +203,26 @@ describe("PATCH /customers/:id", function () {
         email: "test1@email.com",
         phone: "111",
         company: "test1",
+      },
+    });
+  });
+
+  test("bad request with incorrect properties", async function () {
+    const resp = await request(app)
+      .patch(`/customers/${testCustomerIds[0]}`)
+      .send({
+        name: "New Name",
+        bio: "new customer bio",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: [
+          'instance is not allowed to have the additional property "bio"',
+        ],
+        status: 400,
       },
     });
   });

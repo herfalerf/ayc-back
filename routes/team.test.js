@@ -42,6 +42,78 @@ describe("POST /team", function () {
       },
     });
   });
+
+  test("works with partial data", async function () {
+    const resp = await request(app)
+      .post("/team")
+      .send({
+        name: "New Name",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+
+    expect(resp.statusCode).toEqual(201);
+    expect(resp.body).toEqual({
+      member: {
+        id: expect.any(Number),
+        name: "New Name",
+        bio: null,
+        img: null,
+      },
+    });
+  });
+
+  test("bad request with no name", async function () {
+    const resp = await request(app)
+      .post("/team")
+      .send({
+        bio: "member bio",
+        img: "memberimg.jpg",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: { message: ['instance requires property "name"'], status: 400 },
+    });
+  });
+
+  test("bad request with incorrect properties", async function () {
+    const resp = await request(app)
+      .post("/team")
+      .send({
+        name: "New Name",
+        bio: "member bio",
+        img: "memberimg.jpg",
+        experience: "20 years",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: [
+          'instance is not allowed to have the additional property "experience"',
+        ],
+        status: 400,
+      },
+    });
+  });
+
+  test("unauthorized with no token", async function () {
+    const resp = await request(app).post("/team").send({
+      name: "New Name",
+      bio: "New Bio",
+      img: "testimg.jpg",
+    });
+
+    expect(resp.statusCode).toEqual(401);
+    expect(resp.body).toEqual({
+      error: {
+        message: "Unauthorized",
+        status: 401,
+      },
+    });
+  });
 });
 
 // GET /team
@@ -109,6 +181,28 @@ describe("PATCH /team/:name", function () {
     });
   });
 
+  test("bad request with incorrect properties", async function () {
+    const resp = await request(app)
+      .patch("/team/team-member")
+      .send({
+        name: "New Name",
+        bio: "member bio",
+        img: "memberimg.jpg",
+        experience: "20 years",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: [
+          'instance is not allowed to have the additional property "experience"',
+        ],
+        status: 400,
+      },
+    });
+  });
+
   test("not found on no such member", async function () {
     const resp = await request(app)
       .patch("/team/nope")
@@ -117,6 +211,20 @@ describe("PATCH /team/:name", function () {
       })
       .set("authorization", `Bearer ${a1Token}`);
     expect(resp.statusCode).toEqual(404);
+  });
+
+  test("unauthorized with no token", async function () {
+    const resp = await request(app).patch("/team/team-member").send({
+      name: "New Name",
+    });
+
+    expect(resp.statusCode).toEqual(401);
+    expect(resp.body).toEqual({
+      error: {
+        message: "Unauthorized",
+        status: 401,
+      },
+    });
   });
 });
 
@@ -135,5 +243,19 @@ describe("DELETE /team/:name", function () {
       .delete(`/team/nope`)
       .set("authorization", `Bearer ${a1Token}`);
     expect(resp.statusCode).toEqual(404);
+  });
+
+  test("unauthorized with no token", async function () {
+    const resp = await request(app).delete("/team/team-member").send({
+      name: "New Name",
+    });
+
+    expect(resp.statusCode).toEqual(401);
+    expect(resp.body).toEqual({
+      error: {
+        message: "Unauthorized",
+        status: 401,
+      },
+    });
   });
 });

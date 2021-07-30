@@ -5,12 +5,16 @@
     "description": "The root schema comprises the entire JSON document.",
     "examples": [
         {
-            "name": "John Smith",
-            "bio": "This is the bio",
-            "img": "https://via.placeholder.com/150"
+            "name": "Customer Name",
+            "email": "customer@email.com",
+            "phone": "111-111-1111",
+            "company": "Company Name"
         }
     ],
-    "required": [],
+    "required": [
+        "name",
+        "email"
+    ],
     "title": "The root schema",
     "type": "object",
     "properties": {
@@ -21,27 +25,38 @@
             "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
-                "John Smith"
+                "Customer Name"
             ]
         },
-        "bio": {
-            "$id": "#/properties/bio",
+        "email": {
+            "$id": "#/properties/email",
+            "default": "",
+            "description": "An explanation about the purpose of this instance.",
+            "examples": [
+                "customer@email.com"
+            ],
+            "title": "The email schema",
             "type": "string",
-            "title": "The bio schema",
+            "format": "email"
+        },
+        "phone": {
+            "$id": "#/properties/phone",
+            "type": "string",
+            "title": "The phone schema",
             "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
-                "This is the bio"
+                "111-111-1111"
             ]
         },
-        "img": {
-            "$id": "#/properties/img",
+        "company": {
+            "$id": "#/properties/company",
             "type": "string",
-            "title": "The img schema",
+            "title": "The company schema",
             "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
-                "https://via.placeholder.com/150"
+                "Company Name"
             ]
         }
     },
