@@ -9,8 +9,7 @@ const { BadRequestError } = require("../expressError");
 const { ensureAdmin } = require("../middleware/auth");
 const Tag = require("../models/tag");
 
-// const tagNewSchema = require("../schemas/videoNew.json");
-// const tagUpdateSchema = require("../schemas/videoUpdate.json");
+const tagSchema = require("../schemas/tag.json");
 
 const router = express.Router();
 
@@ -23,11 +22,11 @@ const router = express.Router();
 
 router.post("/", ensureAdmin, async function (req, res, next) {
   try {
-    // const validator = jsonSchema.validate(req.body, videoNewSchema);
-    // if (!validator.valid) {
-    //   const errs = validator.errors.map((e) => e.stack);
-    //   throw new BadRequestError(errs);
-    // }
+    const validator = jsonSchema.validate(req.body, tagSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map((e) => e.stack);
+      throw new BadRequestError(errs);
+    }
     const tag = await Tag.add(req.body);
     return res.status(201).json({ tag });
   } catch (err) {
@@ -76,11 +75,11 @@ router.get("/:id", async function (req, res, next) {
 
 router.patch("/:id", ensureAdmin, async function (req, res, next) {
   try {
-    // const validator = jsonSchema.validate(req.body, videoUpdateSchema);
-    // if (!validator.valid) {
-    //   const errs = validator.errors.map((e) => e.stack);
-    //   throw new BadRequestError(errs);
-    // }
+    const validator = jsonSchema.validate(req.body, tagSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map((e) => e.stack);
+      throw new BadRequestError(errs);
+    }
 
     const tag = await Tag.update(req.params.id, req.body);
     console.log(tag);

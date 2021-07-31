@@ -40,39 +40,39 @@ describe("POST /tags", function () {
     });
   });
 
-  //   test("bad request with incorrect properties", async function () {
-  //     const resp = await request(app)
-  //       .post("/tags")
-  //       .send({
-  //         name: "New Tag",
-  //         description: "A video about stuff",
-  //       })
-  //       .set("authorization", `Bearer ${a1Token}`);
+  test("bad request with incorrect properties", async function () {
+    const resp = await request(app)
+      .post("/tags")
+      .send({
+        name: "New Tag",
+        description: "A video about stuff",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
 
-  //     expect(resp.statusCode).toEqual(400);
-  //     expect(resp.body).toEqual({
-  //       error: {
-  //         message: [
-  //           'instance is not allowed to have the additional property "description"',
-  //         ],
-  //         status: 400,
-  //       },
-  //     });
-  //   });
-  //   test("bad request with no name", async function () {
-  //     const resp = await request(app)
-  //       .post("/tags")
-  //       .send({})
-  //       .set("authorization", `Bearer ${a1Token}`);
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: [
+          'instance is not allowed to have the additional property "description"',
+        ],
+        status: 400,
+      },
+    });
+  });
+  test("bad request with no name", async function () {
+    const resp = await request(app)
+      .post("/tags")
+      .send({})
+      .set("authorization", `Bearer ${a1Token}`);
 
-  //     expect(resp.statusCode).toEqual(400);
-  //     expect(resp.body).toEqual({
-  //       error: {
-  //         message: ['instance requires property "name"'],
-  //         status: 400,
-  //       },
-  //     });
-  //   });
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: ['instance requires property "name"'],
+        status: 400,
+      },
+    });
+  });
 
   test("Unauthorized with no token", async function () {
     const resp = await request(app).post("/tags").send({
@@ -140,25 +140,25 @@ describe("PATCH /tags/:id", function () {
     });
   });
 
-  //   test("bad request with incorrect properties", async function () {
-  //     const resp = await request(app)
-  //       .patch(`/tags/${testTagIds[0]}`)
-  //       .send({
-  //         name: "New Name",
-  //         bio: "new video bio",
-  //       })
-  //       .set("authorization", `Bearer ${a1Token}`);
+  test("bad request with incorrect properties", async function () {
+    const resp = await request(app)
+      .patch(`/tags/${testTagIds[0]}`)
+      .send({
+        name: "New Name",
+        bio: "new video bio",
+      })
+      .set("authorization", `Bearer ${a1Token}`);
 
-  //     expect(resp.statusCode).toEqual(400);
-  //     expect(resp.body).toEqual({
-  //       error: {
-  //         message: [
-  //           'instance is not allowed to have the additional property "bio"',
-  //         ],
-  //         status: 400,
-  //       },
-  //     });
-  //   });
+    expect(resp.statusCode).toEqual(400);
+    expect(resp.body).toEqual({
+      error: {
+        message: [
+          'instance is not allowed to have the additional property "bio"',
+        ],
+        status: 400,
+      },
+    });
+  });
 
   test("not found on no such tag id", async function () {
     const resp = await request(app)
