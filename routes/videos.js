@@ -52,7 +52,7 @@ router.get("/", async function (req, res, next) {
 
 // GET /:id
 //
-// Get video by id: { id, name, description, link, }
+// returns video by: {video: { id, name, description, link } }
 //
 // Authorization required: None
 
@@ -60,6 +60,21 @@ router.get("/:id", async function (req, res, next) {
   try {
     const video = await Video.get(req.params.id);
     return res.json({ video });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// POST /:id/tags
+//
+// Add tag to video: { tag }
+//
+// Authorization required: Admin
+
+router.post("/:id/tag", ensureAdmin, async function (req, res, next) {
+  try {
+    const videoTag = await Video.addVideoTag(req.body);
+    return res.json({ videoTag });
   } catch (err) {
     return next(err);
   }

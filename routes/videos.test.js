@@ -13,6 +13,7 @@ const {
   a1Token,
   a2Token,
   testVideoIds,
+  testTagIds,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -168,7 +169,7 @@ describe("GET /videos/:id", function () {
         name: "Test1",
         description: "Description1",
         link: "link1.com",
-        tags: [],
+        tags: ["Tag1"],
       },
     });
   });
@@ -176,6 +177,26 @@ describe("GET /videos/:id", function () {
   test("not found for no such video id", async function () {
     const resp = await request(app).get("/videos/0");
     expect(resp.statusCode).toEqual(404);
+  });
+});
+
+// POST /videos/:id/tag
+
+describe("POST /videos/:id/tag", function () {
+  test("works", async function () {
+    const resp = await request(app)
+      .post(`/videos/${testVideoIds[0]}/tag`)
+      .send({
+        video_id: testVideoIds[0],
+        tag_id: testTagIds[1],
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+    expect(resp.body).toEqual({
+      videoTag: {
+        video_id: testVideoIds[0],
+        tag_id: testTagIds[1],
+      },
+    });
   });
 });
 

@@ -220,14 +220,38 @@ describe("remove", function () {
 
 describe("addVideoTag", function () {
   test("works", async function () {
-    await Video.addVideoTag(testVideoIds[2], testTagIds[0]);
+    let tagData = { video_id: testVideoIds[2], tag_id: testTagIds[0] };
+    await Video.addVideoTag(tagData);
 
-    const res = await db.query("SELECT * FROM videos_tags WHERE tag_id = $1", [
-      testTagIds[0],
-    ]);
+    const res = await db.query(
+      "SELECT * FROM videos_tags WHERE video_id = $1 AND tag_id = $2",
+      [testVideoIds[2], testTagIds[0]]
+    );
     expect(res.rows[0]).toEqual({
       video_id: expect.any(Number),
       tag_id: testTagIds[0],
     });
+  });
+});
+
+// ************ removeVideoTag
+
+describe("removeVideoTag", function () {
+  test("works", async function () {
+    await Video.removeVideoTag(testVideoIds[0], testTagIds[0]);
+    const res = await db.query(
+      `SELECT video_id, tag_id FROM videos_tags WHERE video_id = $1 AND tag_id = $2`,
+      [testVideoIds[0], testTagIds[0]]
+    );
+    expect(res.rows.length).toEqual(0);
+  });
+
+  test("not found if no such video_tag", async function () {
+    try {
+      await Video.removeVideoTag(0, 0);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
   });
 });

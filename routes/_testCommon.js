@@ -18,6 +18,7 @@ async function commonBeforeAll() {
   await db.query("DELETE FROM customers");
   await db.query("DELETE FROM videos");
   await db.query("DELETE FROM tags");
+  await db.query("DELETE FROM videos_tags");
 
   await Member.addMember({
     name: "Team Member",
@@ -74,6 +75,12 @@ async function commonBeforeAll() {
       name: "Tag2",
     })
   ).id;
+
+  await db.query(
+    `INSERT INTO videos_tags (video_id, tag_id)
+      VALUES (${testVideoIds[0]}, ${testTagIds[0]}),
+             (${testVideoIds[1]}, ${testTagIds[1]})`
+  );
 
   await db.query(
     `INSERT INTO admins(username, password)

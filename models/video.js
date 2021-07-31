@@ -125,32 +125,51 @@ class Video {
     if (!video) throw new NotFoundError(`No video with id: ${id}`);
   }
 
-  static async addVideoTag(videoId, tagId) {
+  static async addVideoTag({ video_id, tag_id }) {
     const preCheck = await db.query(
       `SELECT id 
            FROM tags
            WHERE id = $1`,
-      [tagId]
+      [tag_id]
     );
     const tag = preCheck.rows[0];
 
-    if (!tag) throw new NotFoundError(`No tag with id: ${tagId}`);
+    if (!tag) throw new NotFoundError(`No tag with id: ${tag_id}`);
 
     const preCheck2 = await db.query(
       `SELECT id
            FROM videos
            WHERE id = $1`,
-      [videoId]
+      [video_id]
     );
     const video = preCheck2.rows[0];
 
-    if (!video) throw new NotFoundError(`No video with id: ${videoId}`);
+    if (!video) throw new NotFoundError(`No video with id: ${video_id}`);
 
-    await db.query(
+    const result = await db.query(
       `INSERT INTO videos_tags (video_id, tag_id)
-         VALUES ($1, $2)`,
-      [videoId, tagId]
+         VALUES ($1, $2)
+         RETURNING video_id, tag_id`,
+      [video_id, tag_id]
     );
+
+    const videoTag = result.rows[0];
+    return videoTag;
+  }
+
+  static async removeVideoTag(video_id, tag_id) {
+    const result = await db.query(
+      `DELETE 
+           FROM videos_tags
+           WHERE video_id = $1 AND tag_id = $2
+           RETURNING video_id, tag_id`,
+      [video_id, tag_id]
+    );
+
+    if (!result.rows[0])
+      throw new NotFoundError(
+        `No tag id of: ${tag_id} on video with id: ${video_id}`
+      );
   }
 }
 
