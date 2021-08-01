@@ -137,7 +137,7 @@ describe("POST /videos", function () {
 
 describe("GET /videos", function () {
   test("works", async function () {
-    const resp = await await request(app).get("/videos");
+    const resp = await request(app).get("/videos");
 
     expect(resp.body).toEqual({
       videos: [
@@ -152,6 +152,22 @@ describe("GET /videos", function () {
           name: "Test2",
           description: "Description2",
           link: "link2.com",
+        },
+      ],
+    });
+  });
+
+  test("works with query string", async function () {
+    const resp = await request(app).get("/videos?tag=Tag1");
+
+    expect(resp.body).toEqual({
+      videos: [
+        {
+          id: testVideoIds[0],
+          name: "Test1",
+          description: "Description1",
+          link: "link1.com",
+          tag: "Tag1",
         },
       ],
     });

@@ -43,8 +43,13 @@ router.post("/", ensureAdmin, async function (req, res, next) {
 
 router.get("/", async function (req, res, next) {
   try {
-    const videos = await Video.findAll();
-    return res.json({ videos });
+    if (req.query.tag) {
+      const videos = await Video.findAll(req.query.tag);
+      return res.json({ videos });
+    } else {
+      const videos = await Video.findAll();
+      return res.json({ videos });
+    }
   } catch (err) {
     return next(err);
   }
