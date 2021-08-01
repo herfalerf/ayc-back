@@ -180,26 +180,6 @@ describe("GET /videos/:id", function () {
   });
 });
 
-// POST /videos/:id/tag
-
-describe("POST /videos/:id/tag", function () {
-  test("works", async function () {
-    const resp = await request(app)
-      .post(`/videos/${testVideoIds[0]}/tag`)
-      .send({
-        video_id: testVideoIds[0],
-        tag_id: testTagIds[1],
-      })
-      .set("authorization", `Bearer ${a1Token}`);
-    expect(resp.body).toEqual({
-      videoTag: {
-        video_id: testVideoIds[0],
-        tag_id: testTagIds[1],
-      },
-    });
-  });
-});
-
 // PATCH /videos/:id
 
 describe("PATCH /videos/:id", function () {
@@ -279,6 +259,89 @@ describe("DELETE /videos/:id", function () {
 
   test("Unauthorized with no token", async function () {
     const resp = await request(app).delete(`/videos/${testVideoIds[0]}`);
+    expect(resp.statusCode).toEqual(401);
+  });
+});
+
+// POST /videos/:id/tag
+
+describe("POST /videos/:id/tag", function () {
+  test("works", async function () {
+    const resp = await request(app)
+      .post(`/videos/${testVideoIds[0]}/tag`)
+      .send({
+        video_id: testVideoIds[0],
+        tag_id: testTagIds[1],
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+    expect(resp.body).toEqual({
+      videoTag: {
+        video_id: testVideoIds[0],
+        tag_id: testTagIds[1],
+      },
+    });
+  });
+
+  test("not found for no such video id", async function () {
+    const resp = await request(app)
+      .post(`/videos/0/tag`)
+      .set("authorization", `Bearer ${a1Token}`);
+    expect(resp.statusCode).toEqual(404);
+  });
+
+  test("not found for no such tag id", async function () {
+    const resp = await request(app)
+      .post(`/videos/${testVideoIds[0]}/tag`)
+      .send({
+        video_id: testVideoIds[0],
+        tag_id: 0,
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+    expect(resp.statusCode).toEqual(404);
+  });
+
+  test("Unauthorized with no token", async function () {
+    const resp = await request(app).post(`/videos/${testVideoIds[0]}/tag`);
+    expect(resp.statusCode).toEqual(401);
+  });
+});
+
+// DELETE /videos/:id/tag
+
+describe("DELETE /videos/:id/tag", function () {
+  test("works", async function () {
+    const resp = await request(app)
+      .delete(`/videos/${testVideoIds[0]}/tag`)
+      .send({
+        video_id: testVideoIds[0],
+        tag_id: testTagIds[0],
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+    expect(resp.body).toEqual({
+      deleted: `Removed tag with id: ${testTagIds[0]} from video with id: ${testVideoIds[0]}`,
+    });
+  });
+
+  test("not found for no such video id", async function () {
+    const resp = await request(app)
+      .delete(`/videos/0/tag`)
+      .set("authorization", `Bearer ${a1Token}`);
+    expect(resp.statusCode).toEqual(404);
+  });
+
+  test("not found for no such tag id", async function () {
+    const resp = await request(app)
+      .delete(`/videos/${testVideoIds[0]}/tag`)
+      .send({
+        video_id: testVideoIds[0],
+        tag_id: 0,
+      })
+      .set("authorization", `Bearer ${a1Token}`);
+    expect(resp.statusCode).toEqual(404);
+  });
+
+  test("Unauthorized with no token", async function () {
+    const resp = await request(app).delete(`/videos/${testVideoIds[0]}/tag`);
     expect(resp.statusCode).toEqual(401);
   });
 });

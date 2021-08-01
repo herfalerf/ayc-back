@@ -65,21 +65,6 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
-// POST /:id/tags
-//
-// Add tag to video: { tag }
-//
-// Authorization required: Admin
-
-router.post("/:id/tag", ensureAdmin, async function (req, res, next) {
-  try {
-    const videoTag = await Video.addVideoTag(req.body);
-    return res.json({ videoTag });
-  } catch (err) {
-    return next(err);
-  }
-});
-
 // PATCH /:id
 //
 // Update video data
@@ -112,6 +97,40 @@ router.delete("/:id", ensureAdmin, async function (req, res, next) {
   try {
     await Video.remove(req.params.id);
     return res.json({ deleted: `Video with id: ${req.params.id}` });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// POST /:id/tags
+//
+// Add tag to video: { tag }
+//
+// Authorization required: Admin
+
+router.post("/:id/tag", ensureAdmin, async function (req, res, next) {
+  try {
+    const vtData = { video_id: req.params.id, tag_id: req.body.tag_id };
+    const videoTag = await Video.addVideoTag(vtData);
+    return res.json({ videoTag });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// DELETE /:id/tags
+
+// Remove tag from video: { tag }
+
+// Authorization required: Admin
+
+router.delete("/:id/tag", ensureAdmin, async function (req, res, next) {
+  try {
+    const vtData = { video_id: req.params.id, tag_id: req.body.tag_id };
+    await Video.removeVideoTag(vtData);
+    return res.json({
+      deleted: `Removed tag with id: ${vtData.tag_id} from video with id: ${req.params.id}`,
+    });
   } catch (err) {
     return next(err);
   }

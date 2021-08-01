@@ -157,7 +157,7 @@ class Video {
     return videoTag;
   }
 
-  static async removeVideoTag(video_id, tag_id) {
+  static async removeVideoTag({ video_id, tag_id }) {
     const result = await db.query(
       `DELETE 
            FROM videos_tags

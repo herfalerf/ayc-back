@@ -220,7 +220,7 @@ describe("remove", function () {
 
 describe("addVideoTag", function () {
   test("works", async function () {
-    let tagData = { video_id: testVideoIds[2], tag_id: testTagIds[0] };
+    const tagData = { video_id: testVideoIds[2], tag_id: testTagIds[0] };
     await Video.addVideoTag(tagData);
 
     const res = await db.query(
@@ -238,7 +238,8 @@ describe("addVideoTag", function () {
 
 describe("removeVideoTag", function () {
   test("works", async function () {
-    await Video.removeVideoTag(testVideoIds[0], testTagIds[0]);
+    const tagData = { video_id: testVideoIds[0], tag_id: testTagIds[0] };
+    await Video.removeVideoTag(tagData);
     const res = await db.query(
       `SELECT video_id, tag_id FROM videos_tags WHERE video_id = $1 AND tag_id = $2`,
       [testVideoIds[0], testTagIds[0]]
