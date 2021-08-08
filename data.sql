@@ -56,7 +56,7 @@ CREATE TABLE "videos_tags" (
   PRIMARY KEY (video_id, tag_id)
 );
 
-\i data-seed.sql
+-- \i data-seed.sql
 
 DROP DATABASE IF EXISTS ayc_test;
 

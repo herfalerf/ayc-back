@@ -19,9 +19,9 @@ const router = express.Router();
 // Adds a new customer.
 // Data format { "name", "email", "phone", "company" }
 //
-// Authorization required: Admin
+// Authorization required: None
 
-router.post("/", ensureAdmin, async function (req, res, next) {
+router.post("/", async function (req, res, next) {
   try {
     const validator = jsonSchema.validate(req.body, customerNewSchema);
     if (!validator.valid) {
