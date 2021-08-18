@@ -16,16 +16,16 @@ VALUES ('Steve Stevenson',
 INSERT INTO videos (name, description, link)
 VALUES ('Costa Rica',
         'Costa Rica in 4k',
-        '<iframe width="560" height="315" src="https://www.youtube.com/embed/LXb3EKWsInQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+        'https://www.youtube.com/embed/LXb3EKWsInQ'),
         ('Another World',
          'Sony 4k Demo: Another World',
-         '<iframe width="560" height="315" src="https://www.youtube.com/embed/xcJtL7QggTI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+         'https://www.youtube.com/embed/xcJtL7QggTI'),
         ('Unbelievable Beauty',
          '4K Video (Ultra HD) Unbelieveable Beauty',
-         '<iframe width="560" height="315" src="https://www.youtube.com/embed/K1QICrgxTjA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+         'https://www.youtube.com/embed/K1QICrgxTjA'),
         ('Wild Animals',
          'Ultimate Wild Animals Collection in 8K ULTRA HD',
-         '<iframe width="560" height="315" src="https://www.youtube.com/embed/Zv11L-ZfrSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+         'https://www.youtube.com/embed/Zv11L-ZfrSg');
 
 INSERT INTO tags (name) VALUES ('main'), ('funny'), ('serious');
 
