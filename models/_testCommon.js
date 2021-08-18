@@ -22,9 +22,9 @@ async function commonBeforeAll() {
   testCustomerIds.splice(0, 0, ...resultsCustomers.rows.map((r) => r.id));
 
   const resultsTeam = await db.query(`
-    INSERT INTO team(name, bio, img)
-    VALUES ('Team Member', 'Team Member Bio', 'https://via.placeholder.com/150'),
-           ('Team Member 2', 'Team Member Bio 2', 'https://via.placeholder.com/150')
+    INSERT INTO team(name, title, bio, img)
+    VALUES ('Team Member', 'Member Title', 'Team Member Bio', 'https://via.placeholder.com/150'),
+           ('Team Member 2', 'Member Title 2', 'Team Member Bio 2', 'https://via.placeholder.com/150')
     `);
 
   await db.query(

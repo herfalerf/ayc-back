@@ -9,7 +9,7 @@ class Member {
   //  Add new member to database.
   //   Data should be { name, bio, img }
   //  returns { id, name, bio, img }
-  static async addMember({ name, bio, img }) {
+  static async addMember({ name, title, bio, img }) {
     const duplicateCheck = await db.query(
       `SELECT name
                 FROM team
@@ -24,11 +24,12 @@ class Member {
     const result = await db.query(
       `INSERT INTO team
                 (name,
+                title,
                 bio,
                 img)
-                VALUES ($1, $2, $3)
-                RETURNING id, name, bio, img`,
-      [name, bio, img]
+                VALUES ($1, $2, $3, $4)
+                RETURNING id, name, title, bio, img`,
+      [name, title, bio, img]
     );
 
     const member = result.rows[0];
@@ -42,6 +43,7 @@ class Member {
       `SELECT 
             id,
             name,
+            title,
             bio,
             img
             FROM team
@@ -59,6 +61,7 @@ class Member {
     const memberRes = await db.query(
       `SELECT id,
             name,
+            title,
             bio,
             img
             FROM team
@@ -81,6 +84,7 @@ class Member {
   static async update(name, data) {
     const { setCols, values } = sqlForPartialUpdate(data, {
       name: "name",
+      title: "title",
       bio: "bio",
       img: "img",
     });
@@ -90,7 +94,8 @@ class Member {
                         SET ${setCols}
                         WHERE name = ${handleVarIdx}
                         RETURNING id,
-                                  name, 
+                                  name,
+                                  title, 
                                   bio,
                                   img`;
     const result = await db.query(querySql, [...values, name]);

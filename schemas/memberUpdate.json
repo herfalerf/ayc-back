@@ -6,6 +6,7 @@
     "examples": [
         {
             "name": "John Smith",
+            "title": "Job Title",
             "bio": "This is the bio",
             "img": "https://via.placeholder.com/150"
         }
@@ -22,6 +23,15 @@
             "default": "",
             "examples": [
                 "John Smith"
+            ]
+        },
+        "title": {
+            "$id": "#/properties/title",
+            "type": "string",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Job Title"
             ]
         },
         "bio": {

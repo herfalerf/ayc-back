@@ -21,6 +21,7 @@ afterAll(commonAfterAll);
 describe("add", function () {
   const newMember = {
     name: "Test",
+    title: "Test",
     bio: "Test Bio",
     img: "Test img",
   };
@@ -42,12 +43,14 @@ describe("findAll", function () {
       {
         id: expect.any(Number),
         name: "Team Member",
+        title: "Member Title",
         bio: "Team Member Bio",
         img: "https://via.placeholder.com/150",
       },
       {
         id: expect.any(Number),
         name: "Team Member 2",
+        title: "Member Title 2",
         bio: "Team Member Bio 2",
         img: "https://via.placeholder.com/150",
       },
@@ -63,6 +66,7 @@ describe("get", function () {
     expect(member).toEqual({
       id: expect.any(Number),
       name: "Team Member",
+      title: "Member Title",
       bio: "Team Member Bio",
       img: "https://via.placeholder.com/150",
     });
@@ -86,6 +90,7 @@ describe("update", function () {
   };
   const updateDataSetNulls = {
     name: "Update",
+    title: "Update",
     bio: "Update",
     img: null,
   };
@@ -95,17 +100,19 @@ describe("update", function () {
     expect(member).toEqual({
       id: expect.any(Number),
       name: "Team Member",
+      title: "Member Title",
       img: "https://via.placeholder.com/150",
       ...updateData,
     });
 
     const result = await db.query(
-      `SELECT id, name, bio, img FROM team WHERE name = 'Team Member'`
+      `SELECT id, name, title, bio, img FROM team WHERE name = 'Team Member'`
     );
     expect(result.rows).toEqual([
       {
         id: expect.any(Number),
         name: "Team Member",
+        title: "Member Title",
         bio: "Update Bio",
         img: "https://via.placeholder.com/150",
       },

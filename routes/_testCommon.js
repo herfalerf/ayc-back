@@ -22,11 +22,13 @@ async function commonBeforeAll() {
 
   await Member.addMember({
     name: "Team Member",
+    title: "Member Title",
     bio: "Team member bio",
     img: "https://via.placeholder.com/150",
   });
   await Member.addMember({
     name: "Team Member 2",
+    title: "Member Title 2",
     bio: "Team member bio 2",
     img: "https://via.placeholder.com/150",
   });

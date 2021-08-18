@@ -27,6 +27,7 @@ describe("POST /team", function () {
       .post("/team")
       .send({
         name: "New Name",
+        title: "New Title",
         bio: "New Bio",
         img: "testimg.jpg",
       })
@@ -37,6 +38,7 @@ describe("POST /team", function () {
       member: {
         id: expect.any(Number),
         name: "New Name",
+        title: "New Title",
         bio: "New Bio",
         img: "testimg.jpg",
       },
@@ -48,6 +50,7 @@ describe("POST /team", function () {
       .post("/team")
       .send({
         name: "New Name",
+        title: "New Title",
       })
       .set("authorization", `Bearer ${a1Token}`);
 
@@ -56,6 +59,7 @@ describe("POST /team", function () {
       member: {
         id: expect.any(Number),
         name: "New Name",
+        title: "New Title",
         bio: null,
         img: null,
       },
@@ -66,6 +70,7 @@ describe("POST /team", function () {
     const resp = await request(app)
       .post("/team")
       .send({
+        title: "member title",
         bio: "member bio",
         img: "memberimg.jpg",
       })
@@ -82,6 +87,7 @@ describe("POST /team", function () {
       .post("/team")
       .send({
         name: "New Name",
+        title: "New Title",
         bio: "member bio",
         img: "memberimg.jpg",
         experience: "20 years",
@@ -126,12 +132,14 @@ describe("GET /team", function () {
         {
           id: expect.any(Number),
           name: "Team Member",
+          title: "Member Title",
           bio: "Team member bio",
           img: "https://via.placeholder.com/150",
         },
         {
           id: expect.any(Number),
           name: "Team Member 2",
+          title: "Member Title 2",
           bio: "Team member bio 2",
           img: "https://via.placeholder.com/150",
         },
@@ -149,6 +157,7 @@ describe("GET /team/:name", function () {
       member: {
         id: expect.any(Number),
         name: "Team Member",
+        title: "Member Title",
         bio: "Team member bio",
         img: "https://via.placeholder.com/150",
       },
@@ -175,6 +184,7 @@ describe("PATCH /team/:name", function () {
       member: {
         id: expect.any(Number),
         name: "New Name",
+        title: "Member Title",
         bio: "Team member bio",
         img: "https://via.placeholder.com/150",
       },
@@ -186,6 +196,7 @@ describe("PATCH /team/:name", function () {
       .patch("/team/team-member")
       .send({
         name: "New Name",
+        title: "New Title",
         bio: "member bio",
         img: "memberimg.jpg",
         experience: "20 years",

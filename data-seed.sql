@@ -1,12 +1,15 @@
 
-INSERT INTO team (name, bio, img)
+INSERT INTO team (name, title, bio, img)
 VALUES ('Steve Stevenson',
+        'Head Honcho',
         'Big man with a plan.',
         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'),
         ('Rachel Rachelson',
+         'Second in command',
          'Many years of experience doing things',
          'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
          ('Timmy Jimmy',
+          'Peasant',
           'Has two first names, knows it',
           'https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
 

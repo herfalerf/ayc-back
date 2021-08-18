@@ -109,16 +109,6 @@ describe("POST /customers", function () {
       },
     });
   });
-
-  test("Unauthorized with no token", async function () {
-    const resp = await request(app).post("/customers").send({
-      name: "New Cust",
-      email: "new@email.com",
-      phone: "111-111-1111",
-      company: "Newcorp",
-    });
-    expect(resp.statusCode).toEqual(401);
-  });
 });
 
 // GET /customer

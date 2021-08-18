@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS team;
 CREATE TABLE "team" (
   "id" SERIAL PRIMARY KEY,
   "name" varchar NOT NULL,
+  "title" varchar NOT NULL,
   "bio" varchar,
   "img" varchar
 );
@@ -56,6 +57,8 @@ CREATE TABLE "videos_tags" (
   PRIMARY KEY (video_id, tag_id)
 );
 
+
+-- uncomment this to seed your database
 -- \i data-seed.sql
 
 DROP DATABASE IF EXISTS ayc_test;
@@ -69,6 +72,7 @@ DROP TABLE IF EXISTS team;
 CREATE TABLE "team" (
   "id" SERIAL PRIMARY KEY,
   "name" varchar NOT NULL,
+  "title" varchar NOT NULL,
   "bio" varchar,
   "img" varchar
 );
