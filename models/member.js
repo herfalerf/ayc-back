@@ -47,7 +47,7 @@ class Member {
             bio,
             img
             FROM team
-            ORDER BY name`
+            ORDER BY id`
     );
 
     return result.rows;
