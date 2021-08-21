@@ -5,7 +5,7 @@
 const jsonSchema = require("jsonschema");
 const express = require("express");
 const Member = require("../models/member");
-const { toTitle } = require("../helpers/toTitle");
+// const { toTitle } = require("../helpers/toTitle");
 const { BadRequestError } = require("../expressError");
 const { ensureAdmin } = require("../middleware/auth");
 
@@ -51,30 +51,28 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-// GET /:name
+// GET /:id
 //
 // Get member by name: { id, name, bio, img }
 //
 //Authorization required: None
 
-router.get("/:name", async function (req, res, next) {
+router.get("/:id", async function (req, res, next) {
   try {
-    const formattedName = toTitle(req.params.name);
-
-    const member = await Member.get(formattedName);
+    const member = await Member.get(req.params.id);
     return res.json({ member });
   } catch (err) {
     return next(err);
   }
 });
 
-// PATCH /:name { field1, field2 } => { member }
+// PATCH /:id { field1, field2 } => { member }
 // Patches member data.
 // Fields can be: { name, bio, img }
 // Returns { id, name, bio, img }
 // Authorization required: Admin
 
-router.patch("/:name", ensureAdmin, async function (req, res, next) {
+router.patch("/:id", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonSchema.validate(req.body, memberUpdateSchema);
     if (!validator.valid) {
@@ -82,8 +80,7 @@ router.patch("/:name", ensureAdmin, async function (req, res, next) {
       throw new BadRequestError(errs);
     }
 
-    const formattedName = toTitle(req.params.name);
-    const member = await Member.update(formattedName, req.body);
+    const member = await Member.update(req.params.id, req.body);
     return res.json({ member });
   } catch (err) {
     return next(err);
@@ -94,11 +91,10 @@ router.patch("/:name", ensureAdmin, async function (req, res, next) {
 //
 // Authorization: Admin
 
-router.delete("/:name", ensureAdmin, async function (req, res, next) {
+router.delete("/:id", ensureAdmin, async function (req, res, next) {
   try {
-    const formattedName = toTitle(req.params.name);
-    await Member.remove(formattedName);
-    return res.json({ deleted: formattedName });
+    await Member.remove(req.params.id);
+    return res.json({ deleted: `Team Member with id: ${req.params.id}` });
   } catch (err) {
     return next(err);
   }

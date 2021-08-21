@@ -12,6 +12,7 @@ const {
   commonAfterAll,
   a1Token,
   a2Token,
+  testTeamIds,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -148,14 +149,14 @@ describe("GET /team", function () {
   });
 });
 
-// GET /team/:name
+// GET /team/:id
 
-describe("GET /team/:name", function () {
+describe("GET /team/:id", function () {
   test("works", async function () {
-    const resp = await request(app).get(`/team/team-member`);
+    const resp = await request(app).get(`/team/${testTeamIds[0]}`);
     expect(resp.body).toEqual({
       member: {
-        id: expect.any(Number),
+        id: testTeamIds[0],
         name: "Team Member",
         title: "Member Title",
         bio: "Team member bio",
@@ -165,24 +166,24 @@ describe("GET /team/:name", function () {
   });
 
   test("not found for no such member", async function () {
-    const resp = await request(app).get(`/team/nope`);
+    const resp = await request(app).get(`/team/0`);
     expect(resp.statusCode).toEqual(404);
   });
 });
 
-// PATCH /team/:name
+// PATCH /team/:id
 
-describe("PATCH /team/:name", function () {
+describe("PATCH /team/:id", function () {
   test("works", async function () {
     const resp = await request(app)
-      .patch("/team/team-member")
+      .patch(`/team/${testTeamIds[0]}`)
       .send({
         name: "New Name",
       })
       .set("authorization", `Bearer ${a1Token}`);
     expect(resp.body).toEqual({
       member: {
-        id: expect.any(Number),
+        id: testTeamIds[0],
         name: "New Name",
         title: "Member Title",
         bio: "Team member bio",
@@ -193,7 +194,7 @@ describe("PATCH /team/:name", function () {
 
   test("bad request with incorrect properties", async function () {
     const resp = await request(app)
-      .patch("/team/team-member")
+      .patch(`/team/${testTeamIds[0]}`)
       .send({
         name: "New Name",
         title: "New Title",
@@ -216,7 +217,7 @@ describe("PATCH /team/:name", function () {
 
   test("not found on no such member", async function () {
     const resp = await request(app)
-      .patch("/team/nope")
+      .patch("/team/0")
       .send({
         name: "New Nope",
       })
@@ -225,7 +226,7 @@ describe("PATCH /team/:name", function () {
   });
 
   test("unauthorized with no token", async function () {
-    const resp = await request(app).patch("/team/team-member").send({
+    const resp = await request(app).patch(`/team/${testTeamIds[0]}`).send({
       name: "New Name",
     });
 
@@ -239,25 +240,27 @@ describe("PATCH /team/:name", function () {
   });
 });
 
-// DELETE /team/:name
+// DELETE /team/:id
 
-describe("DELETE /team/:name", function () {
+describe("DELETE /team/:id", function () {
   test("works", async function () {
     const resp = await request(app)
-      .delete(`/team/team-member`)
+      .delete(`/team/${testTeamIds[0]}`)
       .set("authorization", `Bearer ${a1Token}`);
-    expect(resp.body).toEqual({ deleted: "Team Member" });
+    expect(resp.body).toEqual({
+      deleted: `Team Member with id: ${testTeamIds[0]}`,
+    });
   });
 
   test("not found for no such member", async function () {
     const resp = await request(app)
-      .delete(`/team/nope`)
+      .delete(`/team/0`)
       .set("authorization", `Bearer ${a1Token}`);
     expect(resp.statusCode).toEqual(404);
   });
 
   test("unauthorized with no token", async function () {
-    const resp = await request(app).delete("/team/team-member").send({
+    const resp = await request(app).delete(`/team/${testTeamIds[0]}`).send({
       name: "New Name",
     });
 

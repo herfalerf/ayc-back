@@ -57,7 +57,7 @@ class Member {
   // accepts member name as function argument
   // returns { id, name, bio, img }
   // throws NotFoundError if member not found.
-  static async get(name) {
+  static async get(id) {
     const memberRes = await db.query(
       `SELECT id,
             name,
@@ -65,13 +65,13 @@ class Member {
             bio,
             img
             FROM team
-            WHERE name= $1`,
-      [name]
+            WHERE id= $1`,
+      [id]
     );
 
     const member = memberRes.rows[0];
 
-    if (!member) throw new NotFoundError(`No team member: ${name}`);
+    if (!member) throw new NotFoundError(`No team member with id: ${id}`);
     return member;
   }
 
@@ -81,7 +81,7 @@ class Member {
   // returns: { id, name, bio, img }
   // Throws NotFoundError if member not found.
 
-  static async update(name, data) {
+  static async update(id, data) {
     const { setCols, values } = sqlForPartialUpdate(data, {
       name: "name",
       title: "title",
@@ -92,16 +92,16 @@ class Member {
 
     const querySql = `UPDATE team
                         SET ${setCols}
-                        WHERE name = ${handleVarIdx}
+                        WHERE id = ${handleVarIdx}
                         RETURNING id,
                                   name,
                                   title, 
                                   bio,
                                   img`;
-    const result = await db.query(querySql, [...values, name]);
+    const result = await db.query(querySql, [...values, id]);
     const member = result.rows[0];
 
-    if (!member) throw new NotFoundError(`No team member: ${name}`);
+    if (!member) throw new NotFoundError(`No team member id: ${id}`);
 
     return member;
   }
@@ -110,17 +110,17 @@ class Member {
   //   returns undefined/
   // Throws NotFoundError if member not found.
 
-  static async remove(name) {
+  static async remove(id) {
     const result = await db.query(
       `DELETE
              FROM team
-             WHERE name = $1
-             RETURNING name`,
-      [name]
+             WHERE id = $1
+             RETURNING id`,
+      [id]
     );
     const member = result.rows[0];
 
-    if (!member) throw new NotFoundError(`No team member: ${name}`);
+    if (!member) throw new NotFoundError(`No team member with id: ${id}`);
 
     return member;
   }

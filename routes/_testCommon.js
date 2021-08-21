@@ -12,6 +12,7 @@ const { createToken } = require("../helpers/tokens");
 const testCustomerIds = [];
 const testVideoIds = [];
 const testTagIds = [];
+const testTeamIds = [];
 
 async function commonBeforeAll() {
   await db.query("DELETE FROM team");
@@ -20,18 +21,23 @@ async function commonBeforeAll() {
   await db.query("DELETE FROM tags");
   await db.query("DELETE FROM videos_tags");
 
-  await Member.addMember({
-    name: "Team Member",
-    title: "Member Title",
-    bio: "Team member bio",
-    img: "https://via.placeholder.com/150",
-  });
-  await Member.addMember({
-    name: "Team Member 2",
-    title: "Member Title 2",
-    bio: "Team member bio 2",
-    img: "https://via.placeholder.com/150",
-  });
+  testTeamIds[0] = (
+    await Member.addMember({
+      name: "Team Member",
+      title: "Member Title",
+      bio: "Team member bio",
+      img: "https://via.placeholder.com/150",
+    })
+  ).id;
+
+  testTeamIds[1] = (
+    await Member.addMember({
+      name: "Team Member 2",
+      title: "Member Title 2",
+      bio: "Team member bio 2",
+      img: "https://via.placeholder.com/150",
+    })
+  ).id;
 
   testCustomerIds[0] = (
     await Customer.add({
@@ -121,4 +127,5 @@ module.exports = {
   testCustomerIds,
   testVideoIds,
   testTagIds,
+  testTeamIds,
 };

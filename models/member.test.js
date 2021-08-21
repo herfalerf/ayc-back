@@ -8,6 +8,7 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
+  testTeamIds,
 } = require("./_testCommon");
 const { fail } = require("assert");
 
@@ -62,9 +63,9 @@ describe("findAll", function () {
 
 describe("get", function () {
   test("works", async function () {
-    let member = await Member.get("Team Member");
+    let member = await Member.get(testTeamIds[0]);
     expect(member).toEqual({
-      id: expect.any(Number),
+      id: testTeamIds[0],
       name: "Team Member",
       title: "Member Title",
       bio: "Team Member Bio",
@@ -74,7 +75,7 @@ describe("get", function () {
 
   test("not found if no such team member", async function () {
     try {
-      await Member.get("nope");
+      await Member.get(0);
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();
@@ -96,9 +97,9 @@ describe("update", function () {
   };
 
   test("works", async function () {
-    let member = await Member.update("Team Member", updateData);
+    let member = await Member.update(testTeamIds[0], updateData);
     expect(member).toEqual({
-      id: expect.any(Number),
+      id: testTeamIds[0],
       name: "Team Member",
       title: "Member Title",
       img: "https://via.placeholder.com/150",
@@ -110,7 +111,7 @@ describe("update", function () {
     );
     expect(result.rows).toEqual([
       {
-        id: expect.any(Number),
+        id: testTeamIds[0],
         name: "Team Member",
         title: "Member Title",
         bio: "Update Bio",
@@ -120,9 +121,9 @@ describe("update", function () {
   });
 
   test("works: null fields", async function () {
-    let member = await Member.update("Team Member", updateDataSetNulls);
+    let member = await Member.update(testTeamIds[0], updateDataSetNulls);
     expect(member).toEqual({
-      id: expect.any(Number),
+      id: testTeamIds[0],
 
       ...updateDataSetNulls,
     });
@@ -132,7 +133,7 @@ describe("update", function () {
     );
     expect(result.rows).toEqual([
       {
-        id: expect.any(Number),
+        id: testTeamIds[0],
         name: "Update",
         bio: "Update",
         img: null,
@@ -142,7 +143,7 @@ describe("update", function () {
 
   test("not found if no such member", async function () {
     try {
-      await Member.update("nope", updateData);
+      await Member.update(0, updateData);
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();
@@ -151,7 +152,7 @@ describe("update", function () {
 
   test("bad request with no data", async function () {
     try {
-      await Member.update("Team Member", {});
+      await Member.update(testTeamIds[0], {});
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();
@@ -163,7 +164,7 @@ describe("update", function () {
 
 describe("remove", function () {
   test("works", async function () {
-    await Member.remove("Team Member");
+    await Member.remove(testTeamIds[0]);
     const res = await db.query(
       "SELECT name FROM team WHERE name='Team Member'"
     );
@@ -172,7 +173,7 @@ describe("remove", function () {
 
   test("not found if no such member", async function () {
     try {
-      await Member.remove("nope");
+      await Member.remove(0);
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();
