@@ -48,7 +48,8 @@ class Video {
                    name, 
                    description,
                    link
-                   FROM videos`;
+                   FROM videos
+                   ORDER BY id`;
     }
 
     const videosRes = await db.query(query);
