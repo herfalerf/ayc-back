@@ -82,7 +82,10 @@ class Video {
       [id]
     );
 
-    video.tags = videoTagsRes.rows.map((t) => t.tag_name);
+    video.tags = videoTagsRes.rows.map((t) => ({
+      tag_name: t.tag_name,
+      tag_id: t.tag_id,
+    }));
     return video;
   }
 

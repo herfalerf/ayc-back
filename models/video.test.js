@@ -113,7 +113,7 @@ describe("get", function () {
       name: "v1",
       description: "v1 describe",
       link: "v1link.com",
-      tags: ["Tag1"],
+      tags: [{ tag_id: testTagIds[0], tag_name: "Tag1" }],
     });
   });
 
