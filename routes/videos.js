@@ -116,8 +116,10 @@ router.delete("/:id", ensureAdmin, async function (req, res, next) {
 router.post("/:id/tag", ensureAdmin, async function (req, res, next) {
   try {
     const vtData = { video_id: req.params.id, tag_id: req.body.tag_id };
-    const videoTag = await Video.addVideoTag(vtData);
-    return res.json({ videoTag });
+    await Video.addVideoTag(vtData);
+    const video = await Video.get(req.params.id);
+    return res.json({ video });
+    // return res.json({ videoTag });
   } catch (err) {
     return next(err);
   }
@@ -133,9 +135,14 @@ router.delete("/:id/tag", ensureAdmin, async function (req, res, next) {
   try {
     const vtData = { video_id: req.params.id, tag_id: req.body.tag_id };
     await Video.removeVideoTag(vtData);
+    const video = await Video.get(req.params.id);
     return res.json({
       deleted: `Removed tag with id: ${vtData.tag_id} from video with id: ${req.params.id}`,
+      video,
     });
+    // return res.json({
+    //   deleted: `Removed tag with id: ${vtData.tag_id} from video with id: ${req.params.id}`,
+    // });
   } catch (err) {
     return next(err);
   }

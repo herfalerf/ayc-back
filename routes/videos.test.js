@@ -185,7 +185,7 @@ describe("GET /videos/:id", function () {
         name: "Test1",
         description: "Description1",
         link: "link1.com",
-        tags: ["Tag1"],
+        tags: [{ tag_id: testTagIds[0], tag_name: "Tag1" }],
       },
     });
   });
@@ -291,9 +291,18 @@ describe("POST /videos/:id/tag", function () {
       })
       .set("authorization", `Bearer ${a1Token}`);
     expect(resp.body).toEqual({
-      videoTag: {
-        video_id: testVideoIds[0],
-        tag_id: testTagIds[1],
+      video: {
+        description: "Description1",
+        id: testVideoIds[0],
+        link: "link1.com",
+        name: "Test1",
+        tags: [
+          { tag_id: testTagIds[0], tag_name: "Tag1" },
+          {
+            tag_id: testTagIds[1],
+            tag_name: "Tag2",
+          },
+        ],
       },
     });
   });
@@ -335,6 +344,13 @@ describe("DELETE /videos/:id/tag", function () {
       .set("authorization", `Bearer ${a1Token}`);
     expect(resp.body).toEqual({
       deleted: `Removed tag with id: ${testTagIds[0]} from video with id: ${testVideoIds[0]}`,
+      video: {
+        id: testVideoIds[0],
+        name: "Test1",
+        description: "Description1",
+        link: "link1.com",
+        tags: [],
+      },
     });
   });
 
