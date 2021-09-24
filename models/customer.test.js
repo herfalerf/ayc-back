@@ -244,6 +244,19 @@ describe("update", function () {
       expect(err instanceof BadRequestError).toBeTruthy();
     }
   });
+
+  test("bad request with duplicate email", async function () {
+    try {
+      await Customer.update(testCustomerIds[0], {
+        name: "Update Cust",
+        email: "testemail2@email.com",
+        phone: "333-333-33333",
+        company: "Update Company",
+      });
+    } catch (err) {
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
+  });
 });
 
 describe("remove", function () {

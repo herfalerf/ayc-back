@@ -85,6 +85,7 @@ class Customer {
   //
   // Returns updated customer information { id, name, email, phone, company }
   static async update(id, data) {
+    console.log(data.email);
     const { setCols, values } = sqlForPartialUpdate(data, {});
     const idVarIdx = "$" + (values.length + 1);
 
@@ -96,6 +97,20 @@ class Customer {
                                 email,
                                 phone,
                                 company`;
+
+    const duplicateCheck = await db.query(
+      `SELECT email, id
+      FROM customers
+      WHERE email = $1`,
+      [data.email]
+    );
+    console.log(duplicateCheck.rows[0]);
+    console.log(id);
+    if (duplicateCheck.rows[0]) {
+      if (duplicateCheck.rows[0].id != id)
+        throw new BadRequestError(`Email already exists: ${data.email}`);
+    }
+
     const result = await db.query(querySql, [...values, id]);
     const customer = result.rows[0];
 
